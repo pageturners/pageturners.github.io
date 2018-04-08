@@ -7,8 +7,8 @@ function init_doc_view() {
             throw error;
         } else {
             // `text` is the file text; set text to appear in div
-//             console.log(text); // Hello, world!
-            document.getElementById("document_view").innerHTML = ""+text;          
+            console.log(text); // Hello, world!
+            document.getElementById("document_view").innerHTML = "File Reads: "+text;          
         }
     });
 }
