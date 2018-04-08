@@ -16,16 +16,16 @@ function getFileFromServer(url, doneCallback) {
 function init_doc_view() {
     console.log('document init');
     
-  getFileFromServer("data/1101163575072.txt", function(text) {
-    if (text === null) {
+    getFileFromServer("data/1101163575072.txt", function(text) {
+        if (text == null) {
         // An error occurred
-        console.log('error loading text');
-    }
-    else {
+            document.getElementById("documentView").innerHTML = "Failed to load document";
+        }
+        else {
         // `text` is the file text; set text to appear in div
-      document.getElementById("documentView").innerHTML = text
-    }
-  });
+        document.getElementById("documentView").innerHTML = text;
+        }
+    });
 }
 
 // function init_doc_list() {
