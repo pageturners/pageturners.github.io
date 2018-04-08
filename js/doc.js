@@ -16,7 +16,7 @@ function getFileFromServer(url, doneCallback) {
 function init_doc_view() {
     console.log('document init');
     
-    jQuery.get('data/1101162143775.txt, function(text) {
+    jQuery.get('data/1101162143775.txt', function(text) {
         if (text == null) {
             console.log('text null');
             document.getElementById("documentView").innerHTML = "Failed to load document";
