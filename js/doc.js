@@ -16,9 +16,9 @@ function getFileFromServer(url, doneCallback) {
 function init_doc_view() {
     console.log('document init');
     
-    getFileFromServer("data/1101163575072.txt", function(text) {
+    jQuery.get('data/1101162143775.txt, function(text) {
         if (text == null) {
-            // An error occurred
+            console.log('text null');
             document.getElementById("documentView").innerHTML = "Failed to load document";
         }
         else {
@@ -26,6 +26,7 @@ function init_doc_view() {
             document.getElementById("documentView").innerHTML = text;
         }
     });
+    
 }
 
 // function init_doc_list() {
