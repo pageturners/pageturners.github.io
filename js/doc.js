@@ -1,7 +1,7 @@
 function init_doc_view() {
     console.log('document init');
     
-    d3.text('/data/1101162143775.txt', function(error, text) {
+    d3.text('data/1101162143775.txt', function(error, text) {
         if (error) {
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
