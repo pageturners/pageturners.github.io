@@ -14,9 +14,12 @@ function getFileFromServer(url, doneCallback) {
 }
 
 function init_doc_view() {
+    console.log('document init');
+    
   getFileFromServer("data/1101163575072.txt", function(text) {
     if (text === null) {
         // An error occurred
+        console.log('error loading text');
     }
     else {
         // `text` is the file text; set text to appear in div
