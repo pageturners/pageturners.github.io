@@ -11,7 +11,10 @@
   </head>
   <body onload="init()">
     <div style="float: top; height: 400px">
-      <div id="doc_div" style="float: left; width: 40%; height: 400px; background:gray;">This area is for the document viewer</div>
+      <div id="doc_div" style="float: left; width: 40%; height: 400px; background:gray;">
+        <div id="document_view">This is were the text should appear</div>
+        <input id="next_button" type="button" value="nextdoc" onclick="next_doc();" />
+      </div>
       <div id="entity_div" style="float: right; width: 60%; height: 400px; background:blue;">
         <table id="entity_table" style="height: 400px; overflow: scroll;"></table>
       </div>
