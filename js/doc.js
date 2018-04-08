@@ -1,22 +1,13 @@
-function getFileFromServer(url, doneCallback) {
-    var xhr;
-
-    xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = handleStateChange;
-    xhr.open("GET", url, true);
-    xhr.send();
-
-    function handleStateChange() {
-        if (xhr.readyState === 4) {
-            doneCallback(xhr.status == 200 ? xhr.responseText : null);
-        }
-    }
-}
-
 function init_doc_view() {
     console.log('document init');
     
-    jQuery.get('data/1101162143775.txt', function(text) {
+    fetch('/data/1101162143775.txt')
+        .then(response => response.text())
+        .then((data) => {
+        console.log(data)
+    })
+    
+    jQuery.get('/data/1101162143775.txt', function(text) {
         if (text == null) {
             console.log('text null');
             document.getElementById("documentView").innerHTML = "Failed to load document";
