@@ -2,21 +2,15 @@ function init_doc_view() {
     console.log('document init');
     
     d3.text('/data/1101162143775.txt', function(error, text) {
-        if (error) throw error;
-        console.log(text); // Hello, world!
+        if (error) {
+            document.getElementById("document_view").innerHTML = "Failed to load document";
+            throw error;
+        } else {
+            // `text` is the file text; set text to appear in div
+            console.log(text); // Hello, world!
+            document.getElementById("document_view").innerHTML = text;          
+        }
     });
-    
-//     jQuery.get('/data/1101162143775.txt', function(text) {
-//         if (text == null) {
-//             console.log('text null');
-//             document.getElementById("documentView").innerHTML = "Failed to load document";
-//         }
-//         else {
-//             // `text` is the file text; set text to appear in div
-//             document.getElementById("documentView").innerHTML = text;
-//         }
-//     });
-    
 }
 
 // function init_doc_list() {
