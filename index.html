@@ -12,11 +12,22 @@
   <body onload="init()">
     <div style="float: top; height: 400px">
       <div id="doc_div" style="float: left; width: 40%; height: 400px; background:gray;">
-        <div id="document_view">This is were the text should appear</div>
+        <!-- Tab links -->
+          <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Document Reader')">Document Reader</button>
+            <button class="tablinks" onclick="openCity(event, 'Document List')">Document List</button>
+          </div>
+        <!-- Tab content -->
+          <div id="Document Reader" class="tabcontent">
+            <div id="document_view">This is were the text should appear</div>
+          </div>
+          <div id="Document List" class="tabcontent">
+            <div id="document_list">This is were the list of documents will appear</div>
+        </div>
+        <input id="next_button" type="button" value="Read Next Doc" onclick="next_doc();" />
         <script type="text/javascript">
           init_doc_view();
         </script>
-        <input id="next_button" type="button" value="Read Next Doc" onclick="next_doc();" />
       </div>
       <div id="entity_div" style="float: right; width: 60%; height: 400px; background:blue;">
         <table id="entity_table" style="height: 400px; overflow: scroll;"></table>
