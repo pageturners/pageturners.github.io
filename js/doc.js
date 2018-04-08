@@ -18,12 +18,12 @@ function init_doc_view() {
     
     getFileFromServer("data/1101163575072.txt", function(text) {
         if (text == null) {
-        // An error occurred
+            // An error occurred
             document.getElementById("documentView").innerHTML = "Failed to load document";
         }
         else {
-        // `text` is the file text; set text to appear in div
-        document.getElementById("documentView").innerHTML = text;
+            // `text` is the file text; set text to appear in div
+            document.getElementById("documentView").innerHTML = text;
         }
     });
 }
