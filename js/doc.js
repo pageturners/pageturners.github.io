@@ -1,22 +1,21 @@
 function init_doc_view() {
     console.log('document init');
     
-    fetch('/data/1101162143775.txt')
-        .then(response => response.text())
-        .then((data) => {
-        console.log(data)
-    })
-    
-    jQuery.get('/data/1101162143775.txt', function(text) {
-        if (text == null) {
-            console.log('text null');
-            document.getElementById("documentView").innerHTML = "Failed to load document";
-        }
-        else {
-            // `text` is the file text; set text to appear in div
-            document.getElementById("documentView").innerHTML = text;
-        }
+    d3.text('/data/1101162143775.txt', function(error, text) {
+        if (error) throw error;
+        console.log(text); // Hello, world!
     });
+    
+//     jQuery.get('/data/1101162143775.txt', function(text) {
+//         if (text == null) {
+//             console.log('text null');
+//             document.getElementById("documentView").innerHTML = "Failed to load document";
+//         }
+//         else {
+//             // `text` is the file text; set text to appear in div
+//             document.getElementById("documentView").innerHTML = text;
+//         }
+//     });
     
 }
 
