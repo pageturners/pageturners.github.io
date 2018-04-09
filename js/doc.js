@@ -13,6 +13,11 @@ function init_doc_view() {
             document.getElementById("document_view").innerHTML = "File Reads: "+text;          
         }
     });
+    
+    var document_list_table = document.getElementById('document_list');
+	var dl_header = '<tr>';
+	var document_list = {};
+    //create table from articleInfo.csv and add columns for number of times read and relevance score
 }
 
 function switchTabs(evt, tabName) {
@@ -36,10 +41,6 @@ function switchTabs(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// function init_doc_list() {
-// //fill second tab with list of documents, their relevance score & number of times they've been read
-// }
-
 // function get_next_doc(currentFile) {
 // //return filename of next best document to read
 //   return filename
@@ -47,13 +48,17 @@ function switchTabs(evt, tabName) {
 
 // function next_doc() {
 //   filename = get_next_doc(currentDoc)
-//   getFileFromServer("data/"+filename, function(text) {
-//     if (text === null) {
-//         // An error occurred
-//     }
-//     else {
-//         // `text` is the file text
-//     }
-//   });
+// d3.text('data/'+filename, function(error, text) {
+//         console.log('reading text....');
+//         if (error) {
+//             console.log('error reading text');
+//             document.getElementById("document_view").innerHTML = "Failed to load document";
+//             throw error;
+//         } else {
+//             // `text` is the file text; set text to appear in div
+//             console.log(text); // Hello, world!
+//             document.getElementById("document_view").innerHTML = "File Reads: "+text;          
+//         }
+//     });
 // }
 
