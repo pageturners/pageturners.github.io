@@ -11,3 +11,9 @@ table {
 	width: 100%;
 	overflow: scroll;
 }
+
+.entity_checkbox {
+	display: inline-block;
+	opacity: 100%;
+	border: 1px black;
+}
