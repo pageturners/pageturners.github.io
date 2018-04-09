@@ -7,13 +7,16 @@ var all_entities = [];
 var person_entities = [];
 var organization_entities = [];
 var location_entities = [];
+var total_entity_appearances = 8214; // hard-coded sum of all entity appearances (for computing entity weights)
+var max_entity_appearances = 560; // hard-coded max of all entity appearances (for computing entity weights)
+var weight_threshold = 50; // anything that appears more than weight_threshold times will have default weight of 1; 8 entities will have max default weight
  
 function init() {
 
 	// load entity overview
 	d3.csv('csv/entityOverview.csv', function(data) {
 		for (var i = 0; i < data.length; i++) {
-			entity_map[data[i]['entity']] = { 'type': data[i]['type'], 'total_appearances': data[i]['overall appearances'], 'document_appearances': data[i]['documents containing'] };
+			entity_map[data[i]['entity']] = { 'type': data[i]['type'], 'total_appearances': data[i]['overall appearances'], 'document_appearances': data[i]['documents containing'], 'default_weight': Math.min(1.0, +data[i]['overall appearances'] / weight_threshold) };
 			if (data[i]['type'] == 'PERSON')
 				person_entities.push(data[i]['entity']);
 			else if (data[i]['type'] == 'ORGANIZATION')
