@@ -73,8 +73,8 @@ max-width: 1400px !important;
   font-size: 18px;
   font-weight: bold;
   padding-top: 10px;
-      padding-left: 20px;
-      padding-bottom: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
 }
 
 /* Style the tab */
@@ -85,13 +85,14 @@ max-width: 1400px !important;
 }
 
 /* Style the buttons that are used to open the tab content */
+.button,
 .tab button {
   background-color: inherit;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 16px;
   transition: 0.3s;
 }
 
