@@ -85,7 +85,6 @@ max-width: 1400px !important;
 }
 
 /* Style the buttons that are used to open the tab content */
-.button,
 .tab button {
   background-color: inherit;
   float: left;
