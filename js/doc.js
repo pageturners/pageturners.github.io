@@ -12,10 +12,13 @@ function doc_init() {
             document.getElementById("document_view").innerHTML = text;          
         }
     });
-	
-    var document_list_table = document.getElementById('document_list');
+
+	document.getElementById("defaultOpen").click();
+
+    	var document_list_table = document.getElementById('document_list');
 	var dl_header = '<tr>';
 	var document_list = {};
+	
     //create table from articleInfo.csv and add columns for number of times read and relevance score
 }
 
