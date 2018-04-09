@@ -1,0 +1,16 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+#timeline {
+  margin-top: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
