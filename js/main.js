@@ -3,6 +3,7 @@ var file_entity_map = {}; // (file name, (entity, # occurrences))
 var article_map = {}; // (file name, {type, date, title, author})
 
 var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
+var all_entities = [];
 var person_entities = [];
 var organization_entities = [];
 var location_entities = [];
@@ -19,6 +20,7 @@ function init() {
 				organization_entities.push(data[i]['entity']);
 			else if (data[i]['type'] == 'LOCATION')
 				location_entities.push(data[i]['entity']);
+			all_entities.push(data[i]['entity']);
 		}
 
 		// load entity dictionary
