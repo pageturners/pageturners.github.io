@@ -1,19 +1,19 @@
 function init_doc_view() {
     console.log('document init');
     
-    d3.text('data/1101162143775.txt', function(error, text) {
+    d3.text('data/1101162505451.txt', function(error, text) {
         console.log('reading text....');
         if (error) {
             console.log('error reading text');
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
         } else {
-            // `text` is the file text; set text to appear in div
-            console.log(text); // Hello, world!
-            document.getElementById("document_view").innerHTML = "File Reads: "+text;          
+            console.log(text);
+            document.getElementById("document_view").innerHTML = text;          
         }
     });
-    
+	
+    console.log('done tiwh text import');
     var document_list_table = document.getElementById('document_list');
 	var dl_header = '<tr>';
 	var document_list = {};
