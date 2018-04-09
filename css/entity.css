@@ -1,8 +1,10 @@
 .entity_col {
 	height: 320px;
-	width: 32%;
+	width: 30%;
 	display: inline-block;
+	float: left;
 	overflow: hidden;
+	margin-right: 20px;
 }
 
 .entity_header {
