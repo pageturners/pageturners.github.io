@@ -3,8 +3,10 @@ function entity_init() {
 
 	// create a table for the first entity type
 	var c1_div = document.getElementById('entities_c1');
-	var c1_table = '<table id="c1_table">';
-	c1_table += '  <tr><th colspan="3">' + entity_types[0] + '</th></tr>';
+	var c1_table_header = '<table id="c1_table_header" class="entity_header">'; 
+	c1_table_header += '  <tr><th colspan="3">' + entity_types[0] + '</th></tr>';
+	c1_table_header += '</table>';
+	var c1_table = '<table id="c1_table" class="entity_table">';
 	for (var i = 0; i < person_entities.length; i++) {
 		c1_table += '<tr>';
 		c1_table += '  <td class="checkbox_td"><input id="' + unformat_name(person_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
@@ -13,12 +15,14 @@ function entity_init() {
 		c1_table += '</tr>';
 	}
 	c1_table += '</table>';
-	c1_div.innerHTML = c1_table;
+	c1_div.innerHTML = c1_table_header + c1_table;
 
 	// create a table for the second entity type
 	var c2_div = document.getElementById('entities_c2');
-	var c2_table = '<table id="c2_table">';
-	c2_table += '  <tr><th colspan="3">' + entity_types[1] + '</th></tr>';
+	var c2_table_header = '<table id="c2_table_header" class="entity_header">';
+	c2_table_header += '  <tr><th colspan="3">' + entity_types[1] + '</th></tr>';
+	c2_table_header += '</table>';
+	var c2_table = '<table id="c2_table" class="entity_table">';
 	for (var i = 0; i < organization_entities.length; i++) {
 		c2_table += '<tr>';
 		c2_table += '  <td class="checkbox_td"><input id="' + unformat_name(organization_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>';
@@ -27,12 +31,14 @@ function entity_init() {
 		c2_table += '</tr>';
 	}
 	c2_table += '</table>';
-	c2_div.innerHTML = c2_table;
+	c2_div.innerHTML = c2_table_header + c2_table;
 
 	// create a table for the third entity type
 	var c3_div = document.getElementById('entities_c3');
-	var c3_table = '<table id="c3_table">';
-	c3_table += '  <tr><th colspan="3">' + entity_types[2] + '</th></tr>';
+	var c3_table_header = '<table id="c3_table_header" class="entity_header">';
+	c3_table_header += '  <tr><th colspan="3">' + entity_types[2] + '</th></tr>';
+	c3_table_header += '</table>';
+	var c3_table = '<table id="c3_table" class="entity_table">';
 	for (var i = 0; i < location_entities.length; i++) {
 		c3_table += '<tr>';
 		c3_table += '  <td class="checkbox_td"><input id="' + unformat_name(location_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
@@ -41,7 +47,7 @@ function entity_init() {
 		c3_table += '</tr>';
 	}
 	c3_table += '</table>';
-	c3_div.innerHTML = c3_table;
+	c3_div.innerHTML = c3_table_header + c3_table;
 
 	add_event_listeners();
 }
