@@ -1,11 +1,11 @@
 var entity_type_map = {};
-var entity_types = ['Type1', 'Type2', 'Type3', 'Type4', 'Type5'];
+var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
 
 function init() {
 
 	// load entity map
-	d3.csv('csv/entities.csv', function(data) {
-		entity_type_map[data['entity_name']] = { 'type': data['entity_type'], 'total_appearances': data['total_appearances'], 'document_appearances': data['document_appearances'] };
+	d3.csv('csv/entityOverview.csv', function(data) {
+		entity_type_map[data['entity_name']] = { 'type': data['type'], 'total_appearances': data['overall appearances'], 'document_appearances': data['documents containing'] };
 	});
 
 	// wait one second to make sure data finishes loading
