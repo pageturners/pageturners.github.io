@@ -8,6 +8,7 @@ function doc_init() {
             throw error;
         } else {
 //             console.log(text);
+		text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
             document.getElementById("document_view").innerHTML = text;          
         }
     });
