@@ -43,11 +43,12 @@ function init() {
 		});
 	});
 
-	// wait a couple seconds to make sure data finishes loading
+	// wait a couple seconds to make sure all the data finishes loading
 	window.setTimeout(function() {
 		console.log('entity_map', entity_map);
 		console.log('file_entity_map', file_entity_map);
 		console.log('article_map', article_map);
+
 		entity_init();
 		timeline_init();
 		doc_init();

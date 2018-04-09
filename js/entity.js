@@ -1,37 +1,45 @@
 function entity_init() {
-	// for debugging -- make sure data loaded from entity file correctly first
 	console.log('entity init');
 
-	var entity_table = document.getElementById('entity_table');
-	var entity_header = '<tr>';
-	var entity_type_list = {};
-	for (key in entity_map) {
-		cur_type = entity_map[key]['type'];
-		if (entity_type_list[cur_type] == undefined)
-			entity_type_list[cur_type] = [];
-		entity_type_list[cur_type].push(key);
+	// create a table for the first entity type
+	var c1_div = document.getElementById('entities_c1');
+	var c1_table = '<table id="c1_table">';
+	c1_table += '  <tr><th colspan="3">' + entity_types[0] + '</th></tr>';
+	for (var i = 0; i < person_entities.length; i++) {
+		c1_table += '<tr>';
+		c1_table += '  <td>**</td>'; // placeholder for checkbox
+		c1_table += '  <td>' + person_entities[i] + '</td>';
+		c1_table += '  <td>**</td>'; // placeholder for weight slider
+		c1_table += '</tr>';
 	}
+	c1_table += '</table>';
+	c1_div.innerHTML = c1_table;
 
-	// create a table for each entity type within the column 
-	/*for (key in entity_type_list) {
-		entity_header += '<th>';
-		entity_header += '<table id="entity_table_' + key + '" valign="top" style="height: 400px; overflow: scroll;"></table>';
-		entity_header += '</th>';
+	// create a table for the second entity type
+	var c2_div = document.getElementById('entities_c2');
+	var c2_table = '<table id="c2_table">';
+	c2_table += '  <tr><th colspan="3">' + entity_types[1] + '</th></tr>';
+	for (var i = 0; i < organization_entities.length; i++) {
+		c2_table += '<tr>';
+		c2_table += '  <td>**</td>'; // placeholder for checkbox
+		c2_table += '  <td>' + organization_entities[i] + '</td>';
+		c2_table += '  <td>**</td>'; // placeholder for weight slider
+		c2_table += '</tr>';
 	}
-	entity_header += '</tr>';
-	entity_table.innerHTML = entity_header;
+	c2_table += '</table>';
+	c2_div.innerHTML = c2_table;
 
-	for (key in entity_type_list) {
-		var entity_type_table = document.getElementById('entity_table_' + key);
-		var cur_list = entity_type_list[key];
-		var cur_sub_table = '<tr><td></td><td>' + key + '</td><td></td></tr>';
-		for (var i = 0; i < cur_list.length; i++) {
-			cur_sub_table += '<tr>';
-			cur_sub_table += '  <td><input id="' + cur_list[i] + '_checkBox" type="checkbox" checked/></td>';
-			cur_sub_table += '  <td>' + cur_list[i] + '</td>';
-			cur_sub_table += '  <td>slider</td>';
-			cur_sub_table += '</tr>';
-		}
-		entity_type_table.innerHTML = cur_sub_table;
-	}*/ //currently a monstrosity D: 
+	// create a table for the third entity type
+	var c3_div = document.getElementById('entities_c3');
+	var c3_table = '<table id="c3_table">';
+	c3_table += '  <tr><th colspan="3">' + entity_types[2] + '</th></tr>';
+	for (var i = 0; i < location_entities.length; i++) {
+		c3_table += '<tr>';
+		c3_table += '  <td>**</td>'; // placeholder for checkbox
+		c3_table += '  <td>' + location_entities[i] + '</td>';
+		c3_table += '  <td>**</td>'; // placeholder for weight slider
+		c3_table += '</tr>';
+	}
+	c3_table += '</table>';
+	c3_div.innerHTML = c3_table;
 }
