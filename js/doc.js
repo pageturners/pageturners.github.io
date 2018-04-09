@@ -2,13 +2,12 @@ function init_doc_view() {
     console.log('document init');
     
     d3.text('data/1101162505451.txt', function(error, text) {
-        console.log('reading text....');
         if (error) {
             console.log('error reading text');
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
         } else {
-            console.log(text);
+//             console.log(text);
             document.getElementById("document_view").innerHTML = text;          
         }
     });
