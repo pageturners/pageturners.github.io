@@ -12,7 +12,6 @@ function init_doc_view() {
         }
     });
 	
-    console.log('done tiwh text import');
     var document_list_table = document.getElementById('document_list');
 	var dl_header = '<tr>';
 	var document_list = {};
