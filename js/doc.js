@@ -1,5 +1,5 @@
-function init_doc_view() {
-    console.log('document init');
+function doc_init() {
+    console.log('doc init');
     
     d3.text('data/1101162505451.txt', function(error, text) {
         if (error) {

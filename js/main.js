@@ -1,99 +1,56 @@
-var entity_type_map = {};
-var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
+var entity_map = {}; // (entity, {type, total appearances, document appearances})
+var file_entity_map = {}; // (file name, (entity, # occurrences))
+var article_map = {}; // (file name, {type, date, title, author})
 
+var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
+var person_entities = [];
+var organization_entities = [];
+var location_entities = [];
+ 
 function init() {
 
-	// load entity map
+	// load entity overview
 	d3.csv('csv/entityOverview.csv', function(data) {
-		entity_type_map[data['entity_name']] = { 'type': data['type'], 'total_appearances': data['overall appearances'], 'document_appearances': data['documents containing'] };
+		for (var i = 0; i < data.length; i++) {
+			entity_map[data[i]['entity']] = { 'type': data[i]['type'], 'total_appearances': data[i]['overall appearances'], 'document_appearances': data[i]['documents containing'] };
+			if (data[i]['type'] == 'PERSON')
+				person_entities.push(data[i]['entity']);
+			else if (data[i]['type'] == 'ORGANIZATION')
+				organization_entities.push(data[i]['entity']);
+			else if (data[i]['type'] == 'LOCATION')
+				location_entities.push(data[i]['entity']);
+		}
+
+		// load entity dictionary
+		d3.csv('csv/entityDictionary.csv', function(data) {
+			for (var i = 0; i < data.length; i++) {
+				var entry = JSON.parse(data[i]['entitydictionary'].replace(/'/g, '"'));
+				for (key in entry) {
+					var new_key = key.replace('*', "'");
+					if (new_key != key) {
+						entry[new_key] = entry[key];
+						delete entry[key];
+					}
+				}
+				file_entity_map[data[i]['filename']] = entry;
+			}
+
+			// load article info
+			d3.csv('csv/articleInfo.csv', function(data) {
+				for (var i = 0; i < data.length; i++)
+					article_map[data[i]['filename']] = { 'type': data[i]['type'], 'date': data[i]['date'], 'title': data[i]['title'], 'author': data[i]['author'] }
+			});
+		});
 	});
 
-	// wait one second to make sure data finishes loading
+	// wait a couple seconds to make sure data finishes loading
 	window.setTimeout(function() {
+		console.log('entity_map', entity_map);
+		console.log('file_entity_map', file_entity_map);
+		console.log('article_map', article_map);
 		entity_init();
-	}, 1000);
+		timeline_init();
+		doc_init();
+	}, 2000);
 
-	// Timeline
-	var margin = {top: 20, right: 20, bottom: 30, left: 40},
-	    width = 1280 - margin.left - margin.right,
-	    height = 330 - margin.top - margin.bottom;
-
-	var x = d3.scale.linear()
-	    .range([0, width]);
-
-	var y = d3.scale.linear()
-	    .range([height, 0]);
-
-	var color = d3.scale.category10();
-
-	var xAxis = d3.svg.axis()
-	    .scale(x)
-	    .orient("bottom");
-
-	var yAxis = d3.svg.axis()
-	    .scale(y)
-	    .orient("left");
-
-	var svg = d3.select("#timeline").append("svg")
-	    .attr("width", width + margin.left + margin.right1000)
-	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	d3.tsv("data.tsv", function(error, data) {
-	  if (error) throw error;
-
-	  data.forEach(function(d) {
-	    d.sepalLength = +d.sepalLength;
-	    d.sepalWidth = +d.sepalWidth;
-	  });
-
-	  x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
-	  y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();
-
-	  svg.append("g")
-	      .attr("class", "x axis")
-	      .attr("transform", "translate(0," + height + ")")
-	      .call(xAxis);
-
-	  svg.append("g")
-	      .attr("class", "y axis")
-	      .call(yAxis)
-	    .append("text")
-	      .attr("class", "label")
-	      .attr("transform", "rotate(-90)")
-	      .attr("y", 6)
-	      .attr("dy", ".71em")
-	      .style("text-anchor", "end")
-	      .text("Relavance")
-
-	  svg.selectAll(".dot")
-	      .data(data)
-	    .enter().append("circle")
-	      .attr("class", "dot")
-	      .attr("r", 3.5)
-	      .attr("cx", function(d) { return x(d.sepalWidth); })
-	      .attr("cy", function(d) { return y(d.sepalLength); })
-	      .style("fill", function(d) { return color(d.species); });
-
-	  var legend = svg.selectAll(".legend")
-	      .data(color.domain())
-	    .enter().append("g")
-	      .attr("class", "legend")
-	      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-	  legend.append("rect")
-	      .attr("x", width - 18)
-	      .attr("width", 18)
-	      .attr("height", 18)
-	      .style("fill", color);
-
-	  legend.append("text")
-	      .attr("x", width - 24)
-	      .attr("y", 9)
-	      .attr("dy", ".35em")
-	      .style("text-anchor", "end")
-	      .text(function(d) { return d; });
-
-	});
 }

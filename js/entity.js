@@ -1,13 +1,12 @@
 function entity_init() {
 	// for debugging -- make sure data loaded from entity file correctly first
 	console.log('entity init');
-	console.log(entity_type_map);
 
 	var entity_table = document.getElementById('entity_table');
 	var entity_header = '<tr>';
 	var entity_type_list = {};
-	for (key in entity_type_map) {
-		cur_type = entity_type_map[key]['type'];
+	for (key in entity_map) {
+		cur_type = entity_map[key]['type'];
 		if (entity_type_list[cur_type] == undefined)
 			entity_type_list[cur_type] = [];
 		entity_type_list[cur_type].push(key);
