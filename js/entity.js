@@ -1,3 +1,6 @@
+/*
+ * Initiatilize the entity view
+ */
 function entity_init() {
 	console.log('entity init');
 
@@ -50,8 +53,12 @@ function entity_init() {
 	c3_div.innerHTML = c3_table_header + c3_table;
 
 	add_event_listeners();
+	sort_all_entity_tables();
 }
 
+/* 
+ * Remove punctuation from names for the purpose of div IDs
+ */
 function unformat_name(name) {
 	var new_name = name.replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g,"");
 	new_name = new_name.replace(/\s{2,}/g," ");
@@ -59,14 +66,26 @@ function unformat_name(name) {
 	return new_name;
 }
 
+/*
+ * Add the event listeners to the check boxes and sliders
+ */
 function add_event_listeners() {
 
 	// when entity checkboxes change, update document scores
 	$('input[name=checkbox]').change(function() {
+		var checkboxId = this.id;
+		checkboxId = checkboxId.substring(0, checkboxId.length - 9);
 	    if ($(this).is(':checked')) {
-	        // Checkbox is checked..
+	        // don't need to change anything just yet...
 	    } else {
-	        // Checkbox is not checked..
+	        // set weight to 0 and re-sort the table
+	        document.getElementById(checkboxId + '_weight').value = "0";
+	        if (person_entities_unformatted.indexOf(checkboxId) > -1)
+		    	sort_entity_table('c1_table');
+		    else if (organization_entities_unformatted.indexOf(checkboxId) > -1)
+		    	sort_entity_table('c2_table');
+		    else if (location_entities_unformatted.indexOf(checkboxId) > -1)
+		    	sort_entity_table('c3_table');
 	    }
 	});
 
@@ -75,8 +94,64 @@ function add_event_listeners() {
 		var slider = document.getElementById(unformat_name(all_entities[i]) + '_weight');
 
 		// Update the current slider value (each time you drag the slider handle)
-		slider.oninput = function() {
-		    // do something
+		slider.onmouseup = function() {
+			var slider_id = this.id;
+			slider_id = slider_id.substring(0, slider_id.length - 7);
+		    if (person_entities_unformatted.indexOf(slider_id) > -1)
+		    	sort_entity_table('c1_table');
+		    else if (organization_entities_unformatted.indexOf(slider_id) > -1)
+		    	sort_entity_table('c2_table');
+		    else if (location_entities_unformatted.indexOf(slider_id) > -1)
+		    	sort_entity_table('c3_table');
 		}
 	}
+}
+
+/*
+ * Sort the entity table
+ * which_table is either c1_table, c2_table, or c3_table
+ * entity_order defines the new sorted order
+ */
+function sort_entity_table(which_table) {
+	console.log('**** sorting ' + which_table);
+	var table = document.getElementById(which_table);
+	var switching = true;
+	var should_switch = false;
+	var i;
+
+	while (switching) {
+		switching = false;
+		var rows = table.getElementsByTagName('tr');
+
+		// loop through all table rows
+		should_switch = false;
+		for (i = 0; i < rows.length - 1; i++) {
+			// get the two elements to compare
+			var row1 = rows[i].getElementsByTagName('td')[2].getElementsByTagName('input')[0];
+			var row2 = rows[i + 1].getElementsByTagName('td')[2].getElementsByTagName('input')[0];
+
+			var val1 = +row1.value;
+			var val2 = +row2.value;
+
+			// check if the two rows should switch place
+			if (val1 < val2) {
+				should_switch = true;
+				break;
+			}
+		}
+	    
+	    if (should_switch) {
+			rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+			switching = true;
+		}
+	}
+}
+
+/*
+ * Sort all of the entity tables 
+ */
+function sort_all_entity_tables() {
+	sort_entity_table('c1_table');
+	sort_entity_table('c2_table');
+	sort_entity_table('c3_table');
 }

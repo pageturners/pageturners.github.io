@@ -5,8 +5,11 @@ var article_map = {}; // (file name, {type, date, title, author})
 var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
 var all_entities = [];
 var person_entities = [];
+var person_entities_unformatted = [];
 var organization_entities = [];
+var organization_entities_unformatted = [];
 var location_entities = [];
+var location_entities_unformatted = [];
 var total_entity_appearances = 8214; // hard-coded sum of all entity appearances (for computing entity weights)
 var max_entity_appearances = 560; // hard-coded max of all entity appearances (for computing entity weights)
 var weight_threshold = 50; // anything that appears more than weight_threshold times will have default weight of 1; 8 entities will have max default weight
@@ -17,12 +20,16 @@ function init() {
 	d3.csv('csv/entityOverview.csv', function(data) {
 		for (var i = 0; i < data.length; i++) {
 			entity_map[data[i]['entity']] = { 'type': data[i]['type'], 'total_appearances': data[i]['overall appearances'], 'document_appearances': data[i]['documents containing'], 'default_weight': Math.min(1.0, +data[i]['overall appearances'] / weight_threshold) };
-			if (data[i]['type'] == 'PERSON')
+			if (data[i]['type'] == 'PERSON') {
 				person_entities.push(data[i]['entity']);
-			else if (data[i]['type'] == 'ORGANIZATION')
+				person_entities_unformatted.push(unformat_name(data[i]['entity']));
+			} else if (data[i]['type'] == 'ORGANIZATION') {
 				organization_entities.push(data[i]['entity']);
-			else if (data[i]['type'] == 'LOCATION')
+				organization_entities_unformatted.push(unformat_name(data[i]['entity']));
+			} else if (data[i]['type'] == 'LOCATION') {
 				location_entities.push(data[i]['entity']);
+				location_entities_unformatted.push(unformat_name(data[i]['entity']));
+			}
 			all_entities.push(data[i]['entity']);
 		}
 
@@ -53,6 +60,12 @@ function init() {
 		console.log('entity_map', entity_map);
 		console.log('file_entity_map', file_entity_map);
 		console.log('article_map', article_map);
+		console.log('person_entities', person_entities);
+		console.log('person_entities_unformatted', person_entities_unformatted);
+		console.log('organization_entities', organization_entities);
+		console.log('organization_entities_unformatted', organization_entities_unformatted);
+		console.log('location_entities', location_entities);
+		console.log('location_entities_unformatted', location_entities_unformatted);
 
 		entity_init();
 		timeline_init();
