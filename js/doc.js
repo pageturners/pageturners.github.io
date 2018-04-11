@@ -36,6 +36,26 @@ function doc_init() {
 
 	doc_table += '</table>';
 	doc_div.innerHTML = doc_header + doc_table;
+	
+	addRowHandlers();
+}
+
+//open document when table row is clicked
+function addRowHandlers() {
+  var table = document.getElementById("doc_table");
+  var rows = table.getElementsByTagName("tr");
+  for (i = 0; i < rows.length; i++) {
+    var currentRow = table.rows[i];
+    var createClickHandler = function(row) {
+      return function() {
+        var cell = row.getElementsByTagName("td")[0];
+        var filename = cell.innerHTML;
+        console("filename clicked:" + filename);
+	openDoc(filename);
+      };
+    };
+    currentRow.onclick = createClickHandler(currentRow);
+  }
 }
 
 function switchTabs(evt, tabName) {
@@ -57,6 +77,19 @@ function switchTabs(evt, tabName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function openDoc(filename) {
+    d3.text('data/'+filename, function(error, text) {
+        if (error) {
+            console.log('error reading text');
+            document.getElementById("document_view").innerHTML = "Failed to load document";
+            throw error;
+        } else {
+	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+            document.getElementById("document_view").innerHTML = text;          
+        }
+    });
 }
 
 // function get_next_doc(currentFile) {
