@@ -1,20 +1,9 @@
 function doc_init() {
     console.log('doc init');
-    
-    d3.text('data/1101162505451.txt', function(error, text) {
-        if (error) {
-            console.log('error reading text');
-            document.getElementById("document_view").innerHTML = "Failed to load document";
-            throw error;
-        } else {
-	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-            document.getElementById("document_view").innerHTML = text;          
-        }
-    });
+	
+    openDoc('1101162505451.txt'); //change to most relevant doc
 
-	document.getElementById("defaultOpen").click();
-
-    	// create a table for the the document information
+    // create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
 	doc_header += '  <tr><th>Filename</th><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th></tr>';
@@ -38,6 +27,35 @@ function doc_init() {
 	doc_div.innerHTML = doc_header + doc_table;
 	
 	addRowHandlers();
+}
+
+function openDoc(filename) {
+    d3.text('data/'+filename, function(error, text) {
+        if (error) {
+            console.log('error reading text');
+            document.getElementById("document_view").innerHTML = "Failed to load document";
+            throw error;
+        } else {
+	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+            document.getElementById("document_view").innerHTML = text;          
+        }
+    });
+	
+	//TODO: highlight which doc is open in table
+	$('#doc_table tr').filter(function(){
+  		return $.trim($('td', this).eq(0).text())==filename;
+	}).css('background','blue');
+	
+// 	//TODO: incriment view count
+// 	$('#doc_table tr').filter(function(){
+//   		return $.trim($('td', this).eq(0).text())==filename;
+// 	}).???
+	
+// 	var table = document.getElementById("doc_table");
+// 	var rows = table.getElementsByTagName("tr");
+// 	var currentRow = table.rows[i];
+	
+    document.getElementById("defaultOpen").click();
 }
 
 //open document when table row is clicked
@@ -77,21 +95,6 @@ function switchTabs(evt, tabName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
-}
-
-function openDoc(filename) {
-    d3.text('data/'+filename, function(error, text) {
-        if (error) {
-            console.log('error reading text');
-            document.getElementById("document_view").innerHTML = "Failed to load document";
-            throw error;
-        } else {
-	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-            document.getElementById("document_view").innerHTML = text;          
-        }
-    });
-	
-    document.getElementById("defaultOpen").click();
 }
 
 // function get_next_doc(currentFile) {
