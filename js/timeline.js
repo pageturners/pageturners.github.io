@@ -7,7 +7,7 @@ function timeline_init() {
 // 		var val = article_map[key]
 // 		date = val.date; //date of each article do val.type, val.author etc to get the other content you want
 // 	}
-	
+
 	// Timeline
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
 	    width = 1280 - margin.left - margin.right,
@@ -30,21 +30,15 @@ function timeline_init() {
 	    .orient("left");
 
 	var svg = d3.select("#timeline").append("svg")
-	    .attr("width", width + margin.left + margin.right1000)
+	    .attr("width", width + margin.left + margin.right+1000)
 	    .attr("height", height + margin.top + margin.bottom)
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.tsv("data.tsv", function(error, data) {
-	  if (error) throw error;
+		console.log(article_map);
 
-	  data.forEach(function(d) {
-	    d.sepalLength = +d.sepalLength;
-	    d.sepalWidth = +d.sepalWidth;
-	  });
-
-	  x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
-	  y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();
+	  x.domain(d3.extent(article_map, function(d) { return d.date; })).nice();
+	  // y.domain(d3.extent(article_map, function(d) { return d.sepalLength; })).nice();
 
 	  svg.append("g")
 	      .attr("class", "x axis")
@@ -63,12 +57,12 @@ function timeline_init() {
 	      .text("Relavance")
 
 	  svg.selectAll(".dot")
-	      .data(data)
+	      .data(article_map)
 	    .enter().append("circle")
 	      .attr("class", "dot")
 	      .attr("r", 3.5)
-	      .attr("cx", function(d) { return x(d.sepalWidth); })
-	      .attr("cy", function(d) { return y(d.sepalLength); })
+	      .attr("cx", function(d) { return x(d.date); })
+	      .attr("cy", function(d) { return y(5); })
 	      .style("fill", function(d) { return color(d.species); });
 
 	  var legend = svg.selectAll(".legend")
@@ -89,6 +83,5 @@ function timeline_init() {
 	      .attr("dy", ".35em")
 	      .style("text-anchor", "end")
 	      .text(function(d) { return d; });
-	});
 
 }
