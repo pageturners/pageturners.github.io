@@ -50,7 +50,7 @@ function addRowHandlers() {
       return function() {
         var cell = row.getElementsByTagName("td")[0];
         var filename = cell.innerHTML;
-        console.log("filename clicked:" + filename);
+//         console.log("filename clicked:" + filename);
 	openDoc(filename);
       };
     };
@@ -90,6 +90,8 @@ function openDoc(filename) {
             document.getElementById("document_view").innerHTML = text;          
         }
     });
+	
+    document.getElementById("defaultOpen").click();
 }
 
 // function get_next_doc(currentFile) {
