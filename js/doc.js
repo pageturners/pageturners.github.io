@@ -59,6 +59,7 @@ function openDoc(filename) {
 	var currentRow = $('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(0).text())==filename;
 	});
+	console.log('currentRow: '+currentRow);
 	currentRow.eq(5).text(parseInt(currentRow.eq(5).text())+1);
 	
 // 	var table = document.getElementById("doc_table");
