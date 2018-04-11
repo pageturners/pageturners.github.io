@@ -15,10 +15,10 @@ function doc_init() {
 	document.getElementById("defaultOpen").click();
 
     	// create a table for the the document information
-	var doc_div = document.getElementById('doc_table');
-	var doc_table_header = '<table id="doc_table_header" class="doc_header">'; 
-	doc_table_header += '  <tr><th>Filename</th><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th></tr>';
-	doc_table_header += '</table>';
+	var doc_div = document.getElementById('documents');
+	var doc_header = '<table id="doc_header" class="doc_header">'; 
+	doc_header += '  <tr><th>Filename</th><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th></tr>';
+	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
 	x = 0
 	for (var key in article_map) {
@@ -35,7 +35,7 @@ function doc_init() {
 	}
 
 	doc_table += '</table>';
-	doc_div.innerHTML = doc_table_header + doc_table;
+	doc_div.innerHTML = doc_header + doc_table;
 }
 
 function switchTabs(evt, tabName) {
