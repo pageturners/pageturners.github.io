@@ -2,6 +2,12 @@ function timeline_init() {
 
 	console.log('timeline init');
 
+// 	for (var key in article_map) {
+// 		filename = key; //filename
+// 		var val = article_map[key]
+// 		date = val.date; //date of each article do val.type, val.author etc to get the other content you want
+// 	}
+	
 	// Timeline
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
 	    width = 1280 - margin.left - margin.right,
