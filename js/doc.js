@@ -7,8 +7,7 @@ function doc_init() {
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
         } else {
-//             console.log(text);
-		text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
             document.getElementById("document_view").innerHTML = text;          
         }
     });
@@ -27,7 +26,7 @@ function doc_init() {
 // 		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		var values = article_map[key]
 		if (x == 0) {
-			console.log(values);
+			console.log('Type: '+value.type+', date: '+value.date)
 		}
 		x += 1;
 // 		doc_table += '  <td class="doc_td">' + person_entities[i] + '</td>'; //type
