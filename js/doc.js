@@ -26,7 +26,7 @@ function doc_init() {
 // 		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		var values = article_map[key]
 		if (x == 0) {
-			console.log('Type: '+value.type+', date: '+value.date)
+			console.log('Type: '+values.type+', date: '+values.date)
 		}
 		x += 1;
 // 		doc_table += '  <td class="doc_td">' + person_entities[i] + '</td>'; //type
