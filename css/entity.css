@@ -4,7 +4,8 @@
 	display: inline-block;
 	float: left;
 	overflow: hidden;
-	margin-right: 20px;
+	margin-right: 10px;
+	    margin-left: 10px;
 }
 
 .entity_header {
@@ -32,6 +33,10 @@ table {
 table tr {
 	padding: 0px;
 }
+
+td, th {
+    padding: 0px 5px !important;
+	}
 
 .checkbox_td {
 	width: 10%;
