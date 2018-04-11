@@ -50,7 +50,7 @@ function addRowHandlers() {
       return function() {
         var cell = row.getElementsByTagName("td")[0];
         var filename = cell.innerHTML;
-        console("filename clicked:" + filename);
+        console.log("filename clicked:" + filename);
 	openDoc(filename);
       };
     };
