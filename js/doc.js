@@ -42,13 +42,20 @@ function openDoc(filename) {
     });
 	
 	//highlight entities in document
+	$('.document').each(function(){
+   		var search_value = "Varley"; // get elements from entity array
+   		var search_regexp = new RegExp(search_value, "g");
+   		$(this).html($(this).html().replace(search_regexp,"<span class = 'highlight'>"+search_value+"</span>"));
+	});
 	
 	//highlight which doc is open in table
 	$('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(0).text())==filename;
 	}).css('background','aquamarine');
 	
-// 	//TODO: incriment view count
+	//TODO: unhighlight row
+	
+ 	//TODO: incriment view count
 	var currentRow = $('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(0).text())==filename;
 	});
