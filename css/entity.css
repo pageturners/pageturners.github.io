@@ -5,7 +5,7 @@
 	float: left;
 	overflow: hidden;
 	margin-right: 10px;
-	    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .entity_header {
@@ -35,11 +35,11 @@ table tr {
 }
 
 td, th {
-    padding: 0px 5px !important;
-	}
+    /*padding: 0px 5px !important;*/
+}
 
 .checkbox_td {
-	width: 10%;
+	width: 5%;
 }
 
 .entity_td {
@@ -47,7 +47,7 @@ td, th {
 }
 
 .slider_td {
-	width: 50%;
+	width: 55%;
 }
 
 .entity_checkbox {
