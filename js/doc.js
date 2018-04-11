@@ -41,15 +41,18 @@ function openDoc(filename) {
         }
     });
 	
-	//TODO: highlight which doc is open in table
+	//highlight entities in document
+	
+	//highlight which doc is open in table
 	$('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(0).text())==filename;
-	}).css('background','blue');
+	}).css('background','aquamarine');
 	
 // 	//TODO: incriment view count
-// 	$('#doc_table tr').filter(function(){
-//   		return $.trim($('td', this).eq(0).text())==filename;
-// 	}).???
+	var currentRow = $('#doc_table tr').filter(function(){
+  		return $.trim($('td', this).eq(0).text())==filename;
+	});
+	currentRow.eq(5).text(parseInt(currentRow.eq(5).text())+1);
 	
 // 	var table = document.getElementById("doc_table");
 // 	var rows = table.getElementsByTagName("tr");
