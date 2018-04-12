@@ -40,8 +40,7 @@ function openDoc(filename) {
 		for (var i = 0; i < person_entities.length; i++) {
 			var entity = person_entities[i];
 			//entity = escapeRegExp(entity);
-			console.log('entity:' entity);
-			if (entity.indexOf(')') < 0) {
+			if (!entity.includes(")")) {
 				var re = new RegExp(entity,"g");
 				text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
 			}
