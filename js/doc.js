@@ -39,7 +39,15 @@ function openDoc(filename) {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 		for (var i = 0; i < person_entities.length; i++) {
 			var re = new RegExp(person_entities[i],"g");
-			text = text.replace(re, "<span class='highlight'>"+person_entities[i]+"</span>");
+			text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
+		}
+		for (var i = 0; i < organization_entities.length; i++) {
+			var re = new RegExp(organization_entities[i],"g");
+			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
+		}
+		for (var i = 0; i < location_entities.length; i++) {
+			var re = new RegExp(location_entities[i],"g");
+			text = text.replace(re, "<span class='highlightloc'>"+location_entities[i]+"</span>");
 		}
 		
 // 		var index = text.indexOf("Varley");
