@@ -37,12 +37,14 @@ function openDoc(filename) {
             throw error;
         } else {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+		var index = innerHTML.indexOf("Varley");
+		console.log('index to highlight:'+index)
+  		if (index >= 0) { 
+   			text = text.substring(0,index) + "<span class='highlight'>" + text.substring(index,index+text.length) + "</span>" + text.substring(index + text.length);
+		}
             document.getElementById("document_view").innerHTML = text;          
         }
     });
-	
-	//TODO: highlight entities in document
-	highlight('Varley');
 	
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
@@ -84,18 +86,6 @@ function openDoc(filename) {
 //   	}	
 // }
 // }
-
-function highlight(text) {
-	console.log('text to highlight:'+text);
-  var inputText = document.getElementById("document_view");
-  var innerHTML = inputText.innerHTML;
-  var index = innerHTML.indexOf(text);
-	console.log('index to highlight:'+index)
-  if (index >= 0) { 
-   innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
-   inputText.innerHTML = innerHTML;
-  }
-}
 
 //open document when table row is clicked
 function addRowHandlers() {
