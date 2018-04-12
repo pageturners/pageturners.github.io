@@ -39,7 +39,7 @@ function openDoc(filename) {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 		for (var i = 0; i < person_entities.length; i++) {
 			var re = new RegExp(person_entities[i],"g");
-			text = text..replace(re, "<span class='highlight'>"+person_entities[i]+"</span>");
+			text = text.replace(re, "<span class='highlight'>"+person_entities[i]+"</span>");
 		}
 		
 // 		var index = text.indexOf("Varley");
