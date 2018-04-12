@@ -42,7 +42,7 @@ function openDoc(filename) {
     });
 	
 	//TODO: highlight entities in document
-
+	highlight('Varley');
 	
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
@@ -52,7 +52,7 @@ function openDoc(filename) {
   		return $.trim($('td', this).eq(0).text())==filename;
 	}).css('background','aquamarine');
 		
- 	//TODO: incriment view count	
+ 	//incriment view count	
 	var table = document.getElementById("doc_table");
 	var rows = table.getElementsByTagName("tr");
 	for (i = 0; i < rows.length; i++) {
@@ -67,6 +67,32 @@ function openDoc(filename) {
 		}   
   	}	
     document.getElementById("defaultOpen").click();
+}
+
+// //update relevance scrore
+// function updateRel(files,scores) {
+// for (filename in files) {
+// 	var table = document.getElementById("doc_table");
+// 	var rows = table.getElementsByTagName("tr");
+// 	for (i = 0; i < rows.length; i++) {
+// 		var currentRow = table.rows[i];
+//     	var fn = currentRow.getElementsByTagName("td")[0].innerHTML;
+// 		if (fn === filename) {
+// 			var relCell = currentRow.getElementsByTagName("td")[6];
+// 			relCell.innerHTML = +score;
+// 		}   
+//   	}	
+// }
+// }
+
+function highlight(text) {
+  var inputText = document.getElementById("document_view");
+  var innerHTML = inputText.innerHTML;
+  var index = innerHTML.indexOf(text);
+  if (index >= 0) { 
+   innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+   inputText.innerHTML = innerHTML;
+  }
 }
 
 //open document when table row is clicked
