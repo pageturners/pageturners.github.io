@@ -38,17 +38,19 @@ function openDoc(filename) {
         } else {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 		for (var i = 0; i < person_entities.length; i++) {
-			var re = new RegExp(person_entities[i],"g");
+			var entity = person_entities[i];
+			console.log("entity: " + entity);
+			var re = new RegExp(entity,"g");
 			text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
 		}
-		for (var i = 0; i < organization_entities.length; i++) {
-			var re = new RegExp(organization_entities[i],"g");
-			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
-		}
-		for (var i = 0; i < location_entities.length; i++) {
-			var re = new RegExp(location_entities[i],"g");
-			text = text.replace(re, "<span class='highlightloc'>"+location_entities[i]+"</span>");
-		}
+// 		for (var i = 0; i < organization_entities.length; i++) {
+// 			var re = new RegExp(organization_entities[i],"g");
+// 			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
+// 		}
+// 		for (var i = 0; i < location_entities.length; i++) {
+// 			var re = new RegExp(location_entities[i],"g");
+// 			text = text.replace(re, "<span class='highlightloc'>"+location_entities[i]+"</span>");
+// 		}
 		
 // 		var index = text.indexOf("Varley");
 // 		console.log('index to highlight:'+index)
