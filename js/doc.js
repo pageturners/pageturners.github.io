@@ -37,7 +37,7 @@ function openDoc(filename) {
             throw error;
         } else {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-		var index = innerHTML.indexOf("Varley");
+		var index = text.indexOf("Varley");
 		console.log('index to highlight:'+index)
   		if (index >= 0) { 
    			text = text.substring(0,index) + "<span class='highlight'>" + text.substring(index,index+text.length) + "</span>" + text.substring(index + text.length);
