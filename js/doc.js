@@ -48,24 +48,27 @@ function openDoc(filename) {
    		$(this).html($(this).html().replace(search_regexp,"<span class = 'highlight'>"+search_value+"</span>"));
 	});
 	
+	//remove past highlighting
+	$('#doc_table tr').css('background','white');
+	
 	//highlight which doc is open in table
 	$('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(0).text())==filename;
 	}).css('background','aquamarine');
-	
-	//TODO: unhighlight row
-	
- 	//TODO: incriment view count
-	var currentRow = $('#doc_table tr').filter(function(){
-  		return $.trim($('td', this).eq(0).text())==filename;
-	});
-	console.log('currentRow: '+currentRow);
-	currentRow.eq(5).text(parseInt(currentRow.eq(5).text())+1);
-	
-// 	var table = document.getElementById("doc_table");
-// 	var rows = table.getElementsByTagName("tr");
-// 	var currentRow = table.rows[i];
-	
+		
+ 	//TODO: incriment view count	
+	var table = document.getElementById("doc_table");
+	var rows = table.getElementsByTagName("tr");
+	for (i = 0; i < rows.length; i++) {
+    	var cell = row.getElementsByTagName("td")[0];
+        var fn = cell.innerHTML;
+		if (fn.equals(filename)) {
+			var relCell = row.getElementsByTagName("td")[6];
+			var viewCell = row.getElementsByTagName("td")[5];
+			var currentViewCount = viewCell.innerHTML;
+			console.log('views: '+currentViewCount);
+		}   
+  }	
     document.getElementById("defaultOpen").click();
 }
 
