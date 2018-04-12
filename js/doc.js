@@ -57,13 +57,13 @@ function openDoc(filename) {
 	var rows = table.getElementsByTagName("tr");
 	for (i = 0; i < rows.length; i++) {
 		var currentRow = table.rows[i];
-    	var cell = currentRow.getElementsByTagName("td")[0];
-        var fn = cell.innerHTML;
+    	var fn = currentRow.getElementsByTagName("td")[0].innerHTML;
 		if (fn === filename) {
 			//var relCell = currentRow.getElementsByTagName("td")[6];
 			var viewCell = currentRow.getElementsByTagName("td")[5];
-			var currentViewCount = viewCell.innerHTML;
-			console.log('views: '+currentViewCount);
+			var viewCountString = viewCell.innerHTML;
+			var viewCount = parseInt(viewCountString, 10) + 1;
+			viewCell.innerHTML = +viewCount;
 		}   
   	}	
     document.getElementById("defaultOpen").click();
