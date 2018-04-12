@@ -6,13 +6,12 @@ function doc_init() {
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
-	doc_header += '  <tr><th>Filename</th><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th></tr>';
+	doc_header += '  <tr><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
 	x = 0
 	for (var key in article_map) {
 		doc_table += '<tr>';
-		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		var val = article_map[key]
 		doc_table += '  <td class="doc_td">' + val.type + '</td>'; //type
 		doc_table += '  <td class="doc_td">' + val.date + '</td>'; //date
@@ -20,6 +19,7 @@ function doc_init() {
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
 		doc_table += '  <td class="doc_td">0</td>'; //view count
 		doc_table += '  <td class="doc_td">Rel.</td>'; //relevance
+		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		doc_table += '</tr>';
 	}
 
@@ -37,6 +37,16 @@ function openDoc(filename) {
             throw error;
         } else {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+		for (var i = 0; i < organization_entities.length; i++) {
+			var re = new RegExp(organization_entities[i],"g");
+			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
+		}
+		for (var i = 0; i < location_entities.length; i++) {
+			if (location_entities[i].length > 2 && !location_entities[i].endsWith(".")) {
+				var re = new RegExp(location_entities[i],"g");
+				text = text.replace(re, "<span class='highlightloc'>"+location_entities[i]+"</span>");
+			}
+		}
 		for (var i = 0; i < person_entities.length; i++) {
 			var entity = person_entities[i];
 			//entity = escapeRegExp(entity);
@@ -45,23 +55,7 @@ function openDoc(filename) {
 				text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
 			}
 		}
-		for (var i = 0; i < location_entities.length; i++) {
-			if (location_entities[i].length > 2 && !location_entities[i].endsWith(".")) {
-				var re = new RegExp(location_entities[i],"g");
-				text = text.replace(re, "<span class='highlightloc'>"+location_entities[i]+"</span>");
-			}
-		}
-		for (var i = 0; i < organization_entities.length; i++) {
-			var re = new RegExp(organization_entities[i],"g");
-			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
-		}
-		
-// 		var index = text.indexOf("Varley");
-// 		console.log('index to highlight:'+index)
-//   		if (index >= 0) { 
-//    			text = text.substring(0,index) + "<span class='highlight'>" + text.substring(index,index+text.length) + "</span>" + text.substring(index + text.length);
-// 		}
-            document.getElementById("document_view").innerHTML = text;          
+        document.getElementById("document_view").innerHTML = text;          
         }
     });
 	
@@ -70,7 +64,7 @@ function openDoc(filename) {
 	
 	//highlight which doc is open in table
 	$('#doc_table tr').filter(function(){
-  		return $.trim($('td', this).eq(0).text())==filename;
+  		return $.trim($('td', this).eq(6).text())==filename;
 	}).css('background','aquamarine');
 		
  	//incriment view count	
@@ -78,10 +72,9 @@ function openDoc(filename) {
 	var rows = table.getElementsByTagName("tr");
 	for (i = 0; i < rows.length; i++) {
 		var currentRow = table.rows[i];
-    	var fn = currentRow.getElementsByTagName("td")[0].innerHTML;
+    	var fn = currentRow.getElementsByTagName("td")[6].innerHTML;
 		if (fn === filename) {
-			//var relCell = currentRow.getElementsByTagName("td")[6];
-			var viewCell = currentRow.getElementsByTagName("td")[5];
+			var viewCell = currentRow.getElementsByTagName("td")[4];
 			var viewCountString = viewCell.innerHTML;
 			var viewCount = parseInt(viewCountString, 10) + 1;
 			viewCell.innerHTML = +viewCount;
@@ -89,22 +82,6 @@ function openDoc(filename) {
   	}	
     document.getElementById("defaultOpen").click();
 }
-
-// //update relevance scrore
-// function updateRel(files,scores) {
-// for (filename in files) {
-// 	var table = document.getElementById("doc_table");
-// 	var rows = table.getElementsByTagName("tr");
-// 	for (i = 0; i < rows.length; i++) {
-// 		var currentRow = table.rows[i];
-//     	var fn = currentRow.getElementsByTagName("td")[0].innerHTML;
-// 		if (fn === filename) {
-// 			var relCell = currentRow.getElementsByTagName("td")[6];
-// 			relCell.innerHTML = +score;
-// 		}   
-//   	}	
-// }
-// }
 
 //open document when table row is clicked
 function addRowHandlers() {
@@ -114,7 +91,7 @@ function addRowHandlers() {
     var currentRow = table.rows[i];
     var createClickHandler = function(row) {
       return function() {
-        var cell = row.getElementsByTagName("td")[0];
+        var cell = row.getElementsByTagName("td")[6];
         var filename = cell.innerHTML;
 //         console.log("filename clicked:" + filename);
 	openDoc(filename);
