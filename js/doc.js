@@ -41,12 +41,8 @@ function openDoc(filename) {
         }
     });
 	
-	//highlight entities in document
-	$('.document').each(function(){
-   		var search_value = "Varley"; // get elements from entity array
-   		var search_regexp = new RegExp(search_value, "g");
-   		$(this).html($(this).html().replace(search_regexp,"<span class = 'highlight'>"+search_value+"</span>"));
-	});
+	//TODO: highlight entities in document
+
 	
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
@@ -60,15 +56,16 @@ function openDoc(filename) {
 	var table = document.getElementById("doc_table");
 	var rows = table.getElementsByTagName("tr");
 	for (i = 0; i < rows.length; i++) {
-    	var cell = row.getElementsByTagName("td")[0];
+		var currentRow = table.rows[i];
+    	var cell = currentRow.getElementsByTagName("td")[0];
         var fn = cell.innerHTML;
 		if (fn.equals(filename)) {
-			var relCell = row.getElementsByTagName("td")[6];
-			var viewCell = row.getElementsByTagName("td")[5];
+			//var relCell = currentRow.getElementsByTagName("td")[6];
+			var viewCell = currentRow.getElementsByTagName("td")[5];
 			var currentViewCount = viewCell.innerHTML;
 			console.log('views: '+currentViewCount);
 		}   
-  }	
+  	}	
     document.getElementById("defaultOpen").click();
 }
 
