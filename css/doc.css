@@ -34,6 +34,14 @@
   border-top: none;
 }
 
-.highlight {
-  background-color: yellow;
+.highlightperson {
+  background-color: aquamarine;
+}
+
+.highlightorg {
+  background-color: plum;
+}
+
+.highlightloc {
+  background-color: greenyellow;
 }
