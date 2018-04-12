@@ -39,8 +39,12 @@ function openDoc(filename) {
 	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 		for (var i = 0; i < person_entities.length; i++) {
 			var entity = person_entities[i];
-			var re = new RegExp(entity,"g");
-			text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
+			//entity = escapeRegExp(entity);
+			console.log('entity:' entity);
+			if (entity.indexOf(")") < 0) {
+				var re = new RegExp(entity,"g");
+				text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
+			}
 		}
 		for (var i = 0; i < organization_entities.length; i++) {
 			var re = new RegExp(organization_entities[i],"g");
@@ -138,6 +142,10 @@ function switchTabs(evt, tabName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
 // function get_next_doc(currentFile) {
