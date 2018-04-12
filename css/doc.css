@@ -34,7 +34,6 @@
   border-top: none;
 }
 
-.highlight{
-  font-weight:bold;
-  color:aquamarine;
+.highlight {
+  background-color: yellow;
 }
