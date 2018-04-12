@@ -59,7 +59,7 @@ function openDoc(filename) {
 		var currentRow = table.rows[i];
     	var cell = currentRow.getElementsByTagName("td")[0];
         var fn = cell.innerHTML;
-		if (fn.equals(filename)) {
+		if (fn === filename) {
 			//var relCell = currentRow.getElementsByTagName("td")[6];
 			var viewCell = currentRow.getElementsByTagName("td")[5];
 			var currentViewCount = viewCell.innerHTML;
