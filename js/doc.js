@@ -18,7 +18,10 @@ function doc_init() {
 		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
 		doc_table += '  <td class="doc_td">0</td>'; //view count
-		doc_table += '  <td class="doc_td">Rel.</td>'; //relevance
+// 		for (var i = 0; i < article_weight_map.length; i++) {
+		console.log('key: '+key+' article weight: '+article_weight_map[key]);
+		doc_table += '  <td class="doc_td">'+article_weight_map[key]+'</td>'; //relevance
+// 		}		
 		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		doc_table += '</tr>';
 	}
@@ -26,6 +29,7 @@ function doc_init() {
 	doc_table += '</table>';
 	doc_div.innerHTML = doc_header + doc_table;
 	
+	sortTable();
 	addRowHandlers();
 }
 
@@ -81,6 +85,41 @@ function openDoc(filename) {
 		}   
   	}	
     document.getElementById("defaultOpen").click();
+}
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("doc_table");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("td")[5];
+      y = rows[i + 1].getElementsByTagName("td")[5];
+      // Check if the two rows should switch place:
+      if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+        // I so, mark as a switch and break the loop:
+        shouldSwitch= true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
 }
 
 //open document when table row is clicked
