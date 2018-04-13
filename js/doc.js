@@ -43,8 +43,10 @@ function openDoc(filename) {
 			current_article = filename;
 			
 		for (var i = 0; i < organization_entities.length; i++) {
-			var re = new RegExp(organization_entities[i],"g");
-			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
+			if (organization_entities[i].length > 2 && !organization_entities[i].endsWith(".")) {
+				var re = new RegExp(organization_entities[i],"g");
+				text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
+			}
 		}
 		for (var i = 0; i < location_entities.length; i++) {
 			if (location_entities[i].length > 2 && !location_entities[i].endsWith(".")) {
@@ -89,7 +91,6 @@ function openDoc(filename) {
 }
 
 function update_doc_table() {
-	console.log('new weights: '+article_weight_map);
 	// create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
@@ -99,6 +100,7 @@ function update_doc_table() {
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
+		console.log('new weights: '+article_weight_map[key]);
 		var weight = (article_weight_map[key]).toFixed(2);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 		doc_table += '  <td class="doc_td">0</td>'; //view count
