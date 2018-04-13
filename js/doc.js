@@ -6,23 +6,21 @@ function doc_init() {
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
-	doc_header += '  <tr><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Score</th><th>Filename</th></tr>';
+	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
-	x = 0
+	console.log('isArray?'+article_weight_map)
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
-		doc_table += '  <td class="doc_td">' + val.type + '</td>'; //type
-		doc_table += '  <td class="doc_td">' + val.date + '</td>'; //date
+		var weight = Math.round(article_weight_map[key] * 100) / 100)
+		console.log('key: '+key+' weight: '+weight);
+		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
+		doc_table += '  <td class="doc_td">0</td>'; //view count
 		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
-		doc_table += '  <td class="doc_td">0</td>'; //view count
-// 		for (var i = 0; i < article_weight_map.length; i++) {
-		var weight = Math.round(article_weight_map[key] * 100) / 100)
-		console.log('key: '+key+' article weight: '+);
-		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
-// 		}		
+		doc_table += '  <td class="doc_td">' + val.date + '</td>'; //date
+		doc_table += '  <td class="doc_td">' + val.type + '</td>'; //type
 		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		doc_table += '</tr>';
 	}
@@ -41,7 +39,11 @@ function openDoc(filename) {
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
         } else {
-	    text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+	    
+			text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+			
+			current_article = filename;
+			
 		for (var i = 0; i < organization_entities.length; i++) {
 			var re = new RegExp(organization_entities[i],"g");
 			text = text.replace(re, "<span class='highlightorg'>"+organization_entities[i]+"</span>");
@@ -79,13 +81,39 @@ function openDoc(filename) {
 		var currentRow = table.rows[i];
     	var fn = currentRow.getElementsByTagName("td")[6].innerHTML;
 		if (fn === filename) {
-			var viewCell = currentRow.getElementsByTagName("td")[4];
+			var viewCell = currentRow.getElementsByTagName("td")[1];
 			var viewCountString = viewCell.innerHTML;
 			var viewCount = parseInt(viewCountString, 10) + 1;
 			viewCell.innerHTML = +viewCount;
 		}   
   	}	
     document.getElementById("defaultOpen").click();
+}
+
+function next_doc() {
+	var next_article = '1101162505451.txt'; //default article
+	var sortable_article_weight_map = [];
+	for (var key in article_weight_map) {
+    	sortable_article_weight_map.push([key, article_weight_map[key]]);
+	}
+	sortable_article_weight_map.sort(compareSecondColumn);
+	var index = sortable_article_weight_map.findIndex(function(obj) {
+   		return obj.id === current_article;
+	});
+	if (sortable_article_weight_map.length > index+1) {
+		var next_article = sortable_article_weight_map[index+1][0];
+		console.log('next: '+next_article)
+	}
+	openDoc(next_article);	
+}
+
+function compareSecondColumn(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] > b[1]) ? -1 : 1;
+    }
 }
 
 function sortTable() {
@@ -105,8 +133,8 @@ function sortTable() {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("td")[5];
-      y = rows[i + 1].getElementsByTagName("td")[5];
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
       // Check if the two rows should switch place:
       if (x.innerHTML) < y.innerHTML) {
         // I so, mark as a switch and break the loop:
@@ -134,7 +162,7 @@ function addRowHandlers() {
         var cell = row.getElementsByTagName("td")[6];
         var filename = cell.innerHTML;
 //         console.log("filename clicked:" + filename);
-	openDoc(filename);
+		openDoc(filename);
       };
     };
     currentRow.onclick = createClickHandler(currentRow);
@@ -165,25 +193,4 @@ function switchTabs(evt, tabName) {
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
-
-// function get_next_doc(currentFile) {
-// //return filename of next best document to read
-//   return filename
-// }
-
-// function next_doc() {
-//   filename = get_next_doc(currentDoc)
-// d3.text('data/'+filename, function(error, text) {
-//         console.log('reading text....');
-//         if (error) {
-//             console.log('error reading text');
-//             document.getElementById("document_view").innerHTML = "Failed to load document";
-//             throw error;
-//         } else {
-//             // `text` is the file text; set text to appear in div
-//             console.log(text); // Hello, world!
-//             document.getElementById("document_view").innerHTML = "File Reads: "+text;          
-//         }
-//     });
-// }
 
