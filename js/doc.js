@@ -13,7 +13,7 @@ function doc_init() {
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
-		var weight = Math.round(article_weight_map[key] * 100) / 100)
+		var weight = Math.round((article_weight_map[key] * 100) / 100);
 		console.log('key: '+key+' weight: '+weight);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 		doc_table += '  <td class="doc_td">0</td>'; //view count
@@ -102,7 +102,7 @@ function next_doc() {
 	});
 	if (sortable_article_weight_map.length > index+1) {
 		var next_article = sortable_article_weight_map[index+1][0];
-		console.log('next: '+next_article)
+		console.log('next: '+next_article);
 	}
 	openDoc(next_article);	
 }
