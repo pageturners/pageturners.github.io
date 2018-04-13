@@ -5,6 +5,7 @@ var article_weight_map = {}; // (file name, article weight)
 var entity_weight_map = {}; // (entity name, entity weight)
 
 var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
+var current_article = '1101162505451.txt'; //filename of article currently being read; default set to earliest article abouve 0.4? 
 var all_entities = [];
 var person_entities = [];
 var person_entities_unformatted = [];
