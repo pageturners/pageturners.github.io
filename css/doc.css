@@ -34,7 +34,24 @@
   border-top: none;
 }
 
-.highlight{
-  font-weight:bold;
-  color:aquamarine;
+.highlightperson {
+  background-color: aquamarine;
+}
+
+.highlightorg {
+  background-color: plum;
+}
+
+.highlightloc {
+  background-color: greenyellow;
+}
+
+#next_button {
+  position: absolute;
+    top: 50px;
+    left: 430px;
+}
+
+#document_view {
+  font-size: 12px;
 }
