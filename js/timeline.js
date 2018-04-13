@@ -13,10 +13,10 @@ function timeline_init() {
 	    width = 1280 - margin.left - margin.right,
 	    height = 330 - margin.top - margin.bottom;
 
-	var time_format = d3.time.format("%Y-%m");
+	var time_format = d3.time.format("%m/%d/%Y");
 
 	var x = d3.time.scale()
-		.domain([new Date(2004, 1, 1), new Date(2004, 12, 24)])
+		.domain([time_format.parse("1/1/2004"), time_format.parse("12/24/2004")])
 	    .range([0, width]);
 
 	var y = d3.scale.linear()
@@ -65,7 +65,7 @@ function timeline_init() {
 	  .enter().append("circle")
 		.attr("class", "dot")
 		.attr("r", 3.5)
-		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
+		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
 		.style("fill", "#000000");
 }
