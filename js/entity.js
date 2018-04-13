@@ -178,4 +178,5 @@ function update_document_scores() {
 	}
 
 	update_timeline();
+	update_doc_table();
 }
