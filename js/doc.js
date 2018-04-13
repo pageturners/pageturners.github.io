@@ -89,6 +89,7 @@ function openDoc(filename) {
 }
 
 function update_doc_table() {
+	console.log('new weights: '+article_weight_map);
 	// create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
