@@ -175,6 +175,7 @@ function update_document_scores() {
 
 		article_score /= entity_sum;
 		article_weight_map[article] = article_score;
+		console.log('entityjs article weights: '+article_score);
 	}
 
 	update_timeline();
