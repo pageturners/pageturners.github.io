@@ -9,79 +9,68 @@ function timeline_init() {
 // 	}
 
 	// Timeline
-	var margin = {top: 20, right: 20, bottom: 30, left: 40},
+	var margin = { top: 20, right: 20, bottom: 30, left: 40 },
 	    width = 1280 - margin.left - margin.right,
 	    height = 330 - margin.top - margin.bottom;
 
-	var x = d3.scale.linear()
+	var time_format = d3.time.format("%Y-%m");
+
+	var x = d3.time.scale()
+		.domain([new Date(2004, 1, 1), new Date(2004, 12, 24)])
 	    .range([0, width]);
 
 	var y = d3.scale.linear()
+		.domain([0, 1])
 	    .range([height, 0]);
-
-	var color = d3.scale.category10();
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
-	    .orient("bottom");
+	    .orient("bottom")
+	    .tickFormat(time_format);
 
 	var yAxis = d3.svg.axis()
 	    .scale(y)
 	    .orient("left");
 
 	var svg = d3.select("#timeline").append("svg")
-	    .attr("width", width + margin.left + margin.right+1000)
+		.attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		console.log(article_map);
+	svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis)
+	  .append("text")
+		.attr("class", "label")
+		.attr("x", width)
+		.attr("y", -6)
+		.style("text-anchor", "end")
+		.text("Date");
 
-	  x.domain(d3.extent(article_map, function(d) { return d.date; })).nice();
-	  // y.domain(d3.extent(article_map, function(d) { return d.sepalLength; })).nice();
+	svg.append("g")
+		.attr("class", "y axis")
+		.call(yAxis)
+	  .append("text")
+		.attr("class", "label")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 6)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.text("Relavance Score")
 
-	  svg.append("g")
-	      .attr("class", "x axis")
-	      .attr("transform", "translate(0," + height + ")")
-	      .call(xAxis);
+	svg.selectAll(".dot")
+		.data(all_articles)
+	  .enter().append("circle")
+		.attr("class", "dot")
+		.attr("r", 3.5)
+		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
+		.attr("cy", function(d) { return y(article_weight_map[d]); })
+		.style("fill", "#000000");
+}
 
-	  svg.append("g")
-	      .attr("class", "y axis")
-	      .call(yAxis)
-	    .append("text")
-	      .attr("class", "label")
-	      .attr("transform", "rotate(-90)")
-	      .attr("y", 6)
-	      .attr("dy", ".71em")
-	      .style("text-anchor", "end")
-	      .text("Relavance")
-
-	  svg.selectAll(".dot")
-	      .data(article_map)
-	    .enter().append("circle")
-	      .attr("class", "dot")
-	      .attr("r", 3.5)
-	      .attr("cx", function(d) { return x(d.date); })
-	      .attr("cy", function(d) { return y(5); })
-	      .style("fill", function(d) { return color(d.species); });
-
-	  var legend = svg.selectAll(".legend")
-	      .data(color.domain())
-	    .enter().append("g")
-	      .attr("class", "legend")
-	      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-	  legend.append("rect")
-	      .attr("x", width - 18)
-	      .attr("width", 18)
-	      .attr("height", 18)
-	      .style("fill", color);
-
-	  legend.append("text")
-	      .attr("x", width - 24)
-	      .attr("y", 9)
-	      .attr("dy", ".35em")
-	      .style("text-anchor", "end")
-	      .text(function(d) { return d; });
+// todo: update stuff in the timeline (called after document scores change)
+function update_timeline() {
 
 }

@@ -79,6 +79,7 @@ function add_event_listeners() {
 	        // don't need to change anything just yet...
 	    } else {
 	        // set weight to 0 and re-sort the table
+	        entity_weight_map[checkboxId] = 0; 
 	        document.getElementById(checkboxId + '_weight').value = "0";
 	        if (person_entities_unformatted.indexOf(checkboxId) > -1)
 		    	sort_entity_table('c1_table');
@@ -86,6 +87,8 @@ function add_event_listeners() {
 		    	sort_entity_table('c2_table');
 		    else if (location_entities_unformatted.indexOf(checkboxId) > -1)
 		    	sort_entity_table('c3_table');
+
+		    update_document_scores();
 	    }
 	});
 
@@ -97,12 +100,15 @@ function add_event_listeners() {
 		slider.onmouseup = function() {
 			var slider_id = this.id;
 			slider_id = slider_id.substring(0, slider_id.length - 7);
+			entity_weight_map[slider_id] = slider.value; // todo: does slider.value work?
 		    if (person_entities_unformatted.indexOf(slider_id) > -1)
 		    	sort_entity_table('c1_table');
 		    else if (organization_entities_unformatted.indexOf(slider_id) > -1)
 		    	sort_entity_table('c2_table');
 		    else if (location_entities_unformatted.indexOf(slider_id) > -1)
 		    	sort_entity_table('c3_table');
+
+		    update_document_scores();
 		}
 	}
 }
@@ -113,7 +119,6 @@ function add_event_listeners() {
  * entity_order defines the new sorted order
  */
 function sort_entity_table(which_table) {
-	console.log('**** sorting ' + which_table);
 	var table = document.getElementById(which_table);
 	var switching = true;
 	var should_switch = false;
@@ -154,4 +159,23 @@ function sort_all_entity_tables() {
 	sort_entity_table('c1_table');
 	sort_entity_table('c2_table');
 	sort_entity_table('c3_table');
+}
+
+/*
+ * Update all of the document scores
+ */
+function update_document_scores() {
+	for (article in file_entity_map) {
+		var entity_sum = 0; 
+		var article_score = 0;
+		for (cur_entity in file_entity_map[article]) {
+			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[cur_entity]);
+			entity_sum += file_entity_map[article][cur_entity];
+		}
+
+		article_score /= entity_sum;
+		article_weight_map[article] = article_score;
+	}
+
+	update_timeline();
 }
