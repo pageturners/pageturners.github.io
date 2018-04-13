@@ -13,7 +13,7 @@ function doc_init() {
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
-		var weight = Math.round((article_weight_map[key] * 100) / 100);
+		var weight = (article_weight_map[key]).toFixed(2);
 		console.log('key: '+key+' weight: '+weight);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 		doc_table += '  <td class="doc_td">0</td>'; //view count
