@@ -9,12 +9,10 @@ function doc_init() {
 	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
-	console.log('isArray?'+article_weight_map)
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
 		var weight = (article_weight_map[key]).toFixed(2);
-		console.log('key: '+key+' weight: '+weight);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 		doc_table += '  <td class="doc_td">0</td>'; //view count
 		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
@@ -88,6 +86,33 @@ function openDoc(filename) {
 		}   
   	}	
     document.getElementById("defaultOpen").click();
+}
+
+function update_doc_table() {
+	// create a table for the the document information
+	var doc_div = document.getElementById('documents');
+	var doc_header = '<table id="doc_header" class="doc_header">'; 
+	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
+	doc_header += '</table>';
+	var doc_table = '<table id="doc_table" class="doc_table">';
+	for (var key in article_map) {
+		doc_table += '<tr>';
+		var val = article_map[key]
+		var weight = (article_weight_map[key]).toFixed(2);
+		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
+		doc_table += '  <td class="doc_td">0</td>'; //view count
+		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
+		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
+		doc_table += '  <td class="doc_td">' + val.date + '</td>'; //date
+		doc_table += '  <td class="doc_td">' + val.type + '</td>'; //type
+		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
+		doc_table += '</tr>';
+	}
+
+	doc_table += '</table>';
+	doc_div.innerHTML = doc_header + doc_table;
+	
+	sortTable();
 }
 
 function next_doc() {
