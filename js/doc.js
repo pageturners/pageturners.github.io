@@ -6,7 +6,7 @@ function doc_init() {
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">'; 
-	doc_header += '  <tr><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Relevance</th><th>Filename</th></tr>';
+	doc_header += '  <tr><th>Type</th><th>Date</th><th>Title</th><th>Author</th><th>Views</th><th>Score</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
 	x = 0
@@ -19,8 +19,9 @@ function doc_init() {
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
 		doc_table += '  <td class="doc_td">0</td>'; //view count
 // 		for (var i = 0; i < article_weight_map.length; i++) {
-		console.log('key: '+key+' article weight: '+article_weight_map[key]);
-		doc_table += '  <td class="doc_td">'+article_weight_map[key]+'</td>'; //relevance
+		var weight = Math.round(article_weight_map[key] * 100) / 100)
+		console.log('key: '+key+' article weight: '+);
+		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 // 		}		
 		doc_table += '  <td class="doc_td">' + key + '</td>'; //Filenames
 		doc_table += '</tr>';
@@ -107,7 +108,7 @@ function sortTable() {
       x = rows[i].getElementsByTagName("td")[5];
       y = rows[i + 1].getElementsByTagName("td")[5];
       // Check if the two rows should switch place:
-      if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+      if (x.innerHTML) < y.innerHTML) {
         // I so, mark as a switch and break the loop:
         shouldSwitch= true;
         break;
