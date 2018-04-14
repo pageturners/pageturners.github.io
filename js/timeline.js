@@ -58,7 +58,13 @@ function timeline_init() {
 		.data(all_articles)
 	  	.enter().append("circle")
 		.attr("class", "dot")
-		.attr("r", 3.5)
+		.attr("r", function(d) {
+			if (d == current_article) {
+				return 5;
+			} else {
+				return 3.5;
+			}
+		})
 		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
 		.style("fill",  function(d) { 
@@ -74,7 +80,8 @@ function timeline_init() {
 				return "#FFECB3";
 			} else {
 			    return "#708090";
-			})
+			}
+		})
 		.on('click', function(d,i) {
 			openDoc(d);
         });
