@@ -114,6 +114,8 @@ function timeline_init() {
 
 // todo: update stuff in the timeline (called after document scores change)
 function update_timeline() {
+	d3.select("#timeline").selectAll("svg").remove();
+	timeline_init();
 // 	// Timeline
 // 	var margin = { top: 20, right: 20, bottom: 30, left: 40 },
 // 	    width = 1280 - margin.left - margin.right,
