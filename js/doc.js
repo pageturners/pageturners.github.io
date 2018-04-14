@@ -122,6 +122,7 @@ function update_doc_table() {
 	doc_div.innerHTML = doc_header + doc_table;
 	
 	sortTable();
+	addRowHandlers();
 }
 
 function next_doc() {
