@@ -67,7 +67,9 @@ function openDoc(filename) {
         document.getElementById("document_view").innerHTML = text;          
         }
     });
-	
+	document.getElementById("defaultOpen").click();
+	highlight_entities(current_article);
+
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
 	
@@ -93,8 +95,6 @@ function openDoc(filename) {
 			}
 		}   		
   	}	
-    document.getElementById("defaultOpen").click();
-	highlight_entities(current_article);
 }
 
 function update_doc_table() {
@@ -130,6 +130,10 @@ function next_doc() {
 }
 
 function highlight_entities(current_article) {
+	$('#c1_table tr').css('background','white');
+	$('#c2_table tr').css('background','white');
+	$('#c3_table tr').css('background','white');
+	
 	for (var cur_entity in file_entity_map[current_article]) {
 		
 	//highlight current person entities
