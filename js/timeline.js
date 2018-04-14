@@ -59,12 +59,12 @@ function timeline_init() {
 	  	.enter().append("circle")
 		.attr("class", "dot")
 		.attr("r", 3.5)
-		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
+		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
 		.style("fill", "#000000")
 		.on('click', function(d,i) {
 			openDoc(d);
-        	});
+        });
 	
 }
 
@@ -77,10 +77,10 @@ function update_timeline() {
 		.transition()
 		.duration(1000)
 		.attr("r", 3.5)
-		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
+		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
 		.style("fill", "#000000")
 		.on('click', function(d,i) {
 			openDoc(d);
-        	});
+        });
 }
