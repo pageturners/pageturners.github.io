@@ -63,15 +63,15 @@ function timeline_init() {
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
 		.style("fill",  function(d) { 
 			if (article_map[d]['type'] == "editorial") {
-				return "#6A1B9A"
+				return "#6A1B9A";
 			} else if (article_map[d]['type'] == "obituary") {
-				return "#000080"
+				return "#000080";
 			} else if (article_map[d]['type'] == "article") {
 				return "#000000";
 			} else if (article_map[d]['type'] == "factsheet") {
-				return "#228B22"
+				return "#228B22";
 			} else if (article_map[d]['type'] === "lucky numbers") {
-				return "#FFECB3"
+				return "#FFECB3";
 			} else {
 			    return "#708090";
 			})
