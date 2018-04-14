@@ -70,17 +70,17 @@ function timeline_init() {
 
 // todo: update stuff in the timeline (called after document scores change)
 function update_timeline() {
-	var time_format = d3.time.format("%m/%d/%Y");
+// 	var time_format = d3.time.format("%m/%d/%Y");
 	
-	d3.select("svg").selectAll(".dot")
-		.data(all_articles)
-		.transition()
-		.duration(1000)
-		.attr("r", 3.5)
-		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
-		.attr("cy", function(d) { return y(article_weight_map[d]); })
-		.style("fill", "#000000")
-		.on('click', function(d,i) {
-			openDoc(d);
-        });
+// 	d3.select("svg").selectAll(".dot")
+// 		.data(all_articles)
+// 		.transition()
+// 		.duration(1000)
+// 		.attr("r", 3.5)
+// 		.attr("cx", function(d) { return x(time_format.parse(article_map[d]['date'])); })
+// 		.attr("cy", function(d) { return y(article_weight_map[d]); })
+// 		.style("fill", "#000000")
+// 		.on('click', function(d,i) {
+// 			openDoc(d);
+//         });
 }
