@@ -67,14 +67,8 @@ function timeline_init() {
 		.attr("r", 3.5)
 		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
-		.attr("id", function(d) { console.log('filenames from graph: '+d.slug); return d; })
 		.style("fill", "#000000")
 		.on('click', function(d,i) {
-            // handle events here
-            // d - datum
-            // i - identifier or index
-            // this - the `<rect>` that was clicked
-			console.log('i: '+i+', d: '+d);
 			openDoc(d);
         	});
 }
