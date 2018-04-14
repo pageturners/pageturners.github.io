@@ -67,9 +67,8 @@ function init() {
 						entity_sum += article_entities[entity_key];
 					}
 
-					article_default_weight /= entity_sum;
-					if (isNaN(article_default_weight))
-						aarticle_default_weight = 0;
+					if (entity_sum != 0)
+						article_default_weight /= entity_sum;
 
 					article_weight_map[data[i]['filename']] = article_default_weight;
 					var article_date = data[i]['date'];

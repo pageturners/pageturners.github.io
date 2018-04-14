@@ -174,7 +174,8 @@ function update_document_scores() {
 			entity_sum += file_entity_map[article][cur_entity];
 		}
 
-		article_score /= entity_sum;
+		if (entity_sum != 0)
+			article_score /= entity_sum;
 		article_weight_map[article] = article_score;
 	}
 
