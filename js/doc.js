@@ -1,3 +1,5 @@
+var next_article = '1101162505451.txt';
+
 function doc_init() {
     console.log('doc init');
 	
@@ -85,7 +87,11 @@ function openDoc(filename) {
 			var viewCountString = viewCell.innerHTML;
 			var viewCount = parseInt(viewCountString, 10) + 1;
 			viewCell.innerHTML = +viewCount;
-		}   
+			
+			if (rows.length > (i+1)) {
+				next_article = table.rows[i+1].getElementsByTagName("td")[6].innerHTML; //todo: change to only go to next article containing certain entities
+			}
+		}   		
   	}	
     document.getElementById("defaultOpen").click();
 }
@@ -119,29 +125,7 @@ function update_doc_table() {
 }
 
 function next_doc() {
-	var next_article = '1101162505451.txt'; //default article
-	var sortable_article_weight_map = [];
-	for (var key in article_weight_map) {
-    	sortable_article_weight_map.push([key, article_weight_map[key]]);
-	}
-	sortable_article_weight_map.sort(compareSecondColumn);
-	var index = sortable_article_weight_map.findIndex(function(obj) {
-   		return obj.id === current_article;
-	});
-	if (sortable_article_weight_map.length > index+1) {
-		var next_article = sortable_article_weight_map[index+1][0];
-		console.log('next: '+next_article);
-	}
 	openDoc(next_article);	
-}
-
-function compareSecondColumn(a, b) {
-    if (a[1] === b[1]) {
-        return 0;
-    }
-    else {
-        return (a[1] > b[1]) ? -1 : 1;
-    }
 }
 
 function sortTable() {
@@ -156,7 +140,7 @@ function sortTable() {
     rows = table.getElementsByTagName("tr");
     /* Loop through all table rows (except the
     first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 0; i < (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
