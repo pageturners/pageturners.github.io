@@ -94,6 +94,7 @@ function openDoc(filename) {
 		}   		
   	}	
     document.getElementById("defaultOpen").click();
+	highlight_entities(current_article);
 }
 
 function update_doc_table() {
@@ -106,7 +107,6 @@ function update_doc_table() {
 	for (var key in article_map) {
 		doc_table += '<tr>';
 		var val = article_map[key]
-		console.log('new weights: '+article_weight_map[key]);
 		var weight = (article_weight_map[key]).toFixed(2);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
 		doc_table += '  <td class="doc_td">0</td>'; //view count
@@ -127,6 +127,26 @@ function update_doc_table() {
 
 function next_doc() {
 	openDoc(next_article);	
+}
+
+function highlight_entities(current_article) {
+	for (var cur_entity in file_entity_map[current_article]) {
+		
+	//highlight current person entities
+	$('#c1_table tr').filter(function(){
+  		return $.trim($('td', this).eq(1).text())==cur_entity;
+	}).css('background','greenyellow');
+		
+			//highlight current person entities
+	$('#c2_table tr').filter(function(){
+  		return $.trim($('td', this).eq(1).text())==cur_entity;
+	}).css('background','greenyellow');
+		
+			//highlight current person entities
+	$('#c3_table tr').filter(function(){
+  		return $.trim($('td', this).eq(1).text())==cur_entity;
+	}).css('background','greenyellow');
+	}
 }
 
 function sortTable() {
