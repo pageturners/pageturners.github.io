@@ -60,7 +60,7 @@ function timeline_init() {
 		.attr("class", "dot")
 		.attr("r", function(d) {
 			if (d == current_article) {
-				return 10;
+				return 7;
 			} else {
 				return 3.5;
 			}
@@ -71,34 +71,41 @@ function timeline_init() {
 			if (article_map[d]['type'] == "editorial") {
 				return "#6A1B9A";
 			} else if (article_map[d]['type'] == "obituary") {
-				return "#000080";
-			} else if (article_map[d]['type'] == "article") {
 				return "#000000";
+			} else if (article_map[d]['type'] == "article") {
+				return "#4CAF50";
 			} else if (article_map[d]['type'] == "factsheet") {
-				return "#228B22";
+				return "#008B8B";
 			} else if (article_map[d]['type'] === "lucky numbers") {
-				return "#FFECB3";
+				return "#778899";
 			} else {
-			    return "#708090";
+			    return "#808080";
 			}
 		})
 	.style("stroke",  function(d) { 
 			if (article_map[d]['type'] == "editorial") {
 				return "#6A1B9A";
 			} else if (article_map[d]['type'] == "obituary") {
-				return "#000080";
-			} else if (article_map[d]['type'] == "article") {
 				return "#000000";
+			} else if (article_map[d]['type'] == "article") {
+				return "#4CAF50";
 			} else if (article_map[d]['type'] == "factsheet") {
-				return "#228B22";
+				return "#008B8B";
 			} else if (article_map[d]['type'] === "lucky numbers") {
-				return "#FFECB3";
+				return "#778899";
 			} else {
-			    return "#708090";
+			    return "#808080";
 			}
 		})
 		.on('click', function(d,i) {
 			openDoc(d);
+			svg.selectAll(".dot").attr("r", function(d) {
+			if (d == current_article) {
+				return 7;
+			} else {
+				return 3.5;
+			}
+			});
         });
 	
 }
