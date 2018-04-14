@@ -67,8 +67,8 @@ function timeline_init() {
 		.attr("r", 3.5)
 		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
 		.attr("cy", function(d) { return y(article_weight_map[d]); })
-		.attr("id", function(d) { console.log('filenames from graph: '+article_map[d]['filename'].slug); return article_map[d]['filename'].slug; });
-		.style("fill", "#000000");
+		.attr("id", function(d) { console.log('filenames from graph: '+article_map[d]['filename'].slug); return article_map[d]['filename'].slug; })
+		.style("fill", "#000000")
 		.on('click', function(d,i) {
             // handle events here
             // d - datum
