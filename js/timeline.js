@@ -69,36 +69,19 @@ function timeline_init() {
 
 // todo: update stuff in the timeline (called after document scores change)
 function update_timeline() {
-	var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-	    width = 1280 - margin.left - margin.right,
-	    height = 330 - margin.top - margin.bottom;
-
-	var time_format = d3.time.format("%m/%d/%Y");
-
-	var x = d3.time.scale()
-		.domain([time_format.parse("1/1/2004"), time_format.parse("12/24/2004")])
-	    .range([0, width]);
-
-	var y = d3.scale.linear()
-		.domain([0, 1])
-	    .range([height, 0]);
+// 	d3.select("svg").remove();
+// 	timeline_init();
 	
-	var svg = d3.select("#timeline").append("svg")
-	  .attr("width", width + margin.left + margin.right)
-	  .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-	
-	svg.selectAll(".dot").remove();
-	svg.selectAll(".dot")
-		.data(all_articles)
-	  	.enter().append("circle")
-		.attr("class", "dot")
-		.attr("r", 3.5)
-		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
-		.attr("cy", function(d) { return y(article_weight_map[d]); })
-		.style("fill", "#000000")
-		.on('click', function(d,i) {
-			openDoc(d);
-        	});
+// 	svg.selectAll(".dot").remove();
+// 	svg.selectAll(".dot")
+// 		.data(all_articles)
+// 	  	.enter().append("circle")
+// 		.attr("class", "dot")
+// 		.attr("r", 3.5)
+// 		.attr("cx", function(d) { console.log(time_format.parse(article_map[d]['date'])); return x(time_format.parse(article_map[d]['date'])); })
+// 		.attr("cy", function(d) { return y(article_weight_map[d]); })
+// 		.style("fill", "#000000")
+// 		.on('click', function(d,i) {
+// 			openDoc(d);
+//         	});
 }
