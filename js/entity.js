@@ -54,6 +54,9 @@ function entity_init() {
 
 	add_event_listeners();
 	sort_all_entity_tables();
+	addRowHandlers("c1_table");
+	addRowHandlers("c2_table");
+	addRowHandlers("c3_table");
 }
 
 /* 
@@ -112,6 +115,40 @@ function add_event_listeners() {
 		}
 	}
 }
+
+//open document when table row is clicked
+function addRowHandlers(table_name) {
+  var table = document.getElementById(table_name);
+  var rows = table.getElementsByTagName("tr");
+  for (i = 0; i < rows.length; i++) {
+    var currentRow = table.rows[i];
+    var createClickHandler = function(row) {
+      return function() {
+	      	//remove past highlighting
+	$('#doc_table tr').css('background','white');
+	
+	//reapply current article highlight
+	$('#doc_table tr').filter(function(){
+  		return $.trim($('td', this).eq(6).text())==current_article;
+	}).css('background','aquamarine');
+	      
+        var cell = row.getElementsByTagName("td")[1];
+        var entity = cell.innerHTML;
+//         highlight files which contain that entity
+	for (var article in file_entity_map) {
+		if (entity in file_entity_map[article]) {
+			//highlight which doc is open in table
+			$('#doc_table tr').filter(function(){
+  				return $.trim($('td', this).eq(6).text())==article;
+			}).css('background','lightsteelblue');
+		}		
+	}
+      };
+    };
+    currentRow.onclick = createClickHandler(currentRow);
+  }
+}
+
 
 /*
  * Sort the entity table
