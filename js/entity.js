@@ -52,11 +52,11 @@ function entity_init() {
 	c3_table += '</table>';
 	c3_div.innerHTML = c3_table_header + c3_table;
 
-	add_event_listeners();
-	sort_all_entity_tables();
 	addRowHandlers("c1_table");
 	addRowHandlers("c2_table");
 	addRowHandlers("c3_table");
+	add_event_listeners();
+	sort_all_entity_tables();
 }
 
 /* 
@@ -118,6 +118,7 @@ function add_event_listeners() {
 
 //open document when table row is clicked
 function addRowHandlers(table_name) {
+	console.log('row handler added for: '+table_name);
   var table = document.getElementById(table_name);
   var rows = table.getElementsByTagName("tr");
   for (i = 0; i < rows.length; i++) {
