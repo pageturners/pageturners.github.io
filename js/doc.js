@@ -1,9 +1,9 @@
-var next_article = '1101162505451.txt';
+var next_article = '1101243424483.txt';
 
 function doc_init() {
     console.log('doc init');
 	
-    openDoc('1101162505451.txt'); //change to most relevant doc
+    openDoc('1101243424483.txt'); //change to most relevant doc
 
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
