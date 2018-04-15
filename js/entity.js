@@ -172,7 +172,7 @@ function update_document_scores() {
 			unformatted_entity = unformat_name(cur_entity);
 // 			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[unformatted_entity]);
 // 			entity_sum += file_entity_map[article][cur_entity];
-			article_score += entity_weight_map[unformatted_entity];
+			article_score += (1*entity_weight_map[unformatted_entity]);
 			entity_sum += 1;	
 		}
 
