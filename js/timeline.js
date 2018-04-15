@@ -97,6 +97,14 @@ function timeline_init() {
 			    return "#808080";
 			}
 		})
+		.on('dbclick', function(d,i) {
+			//remove datapoint
+			d3.select(this).remove();
+			//set doc score to 0
+//the problem is that this will be undone anytime the entity weights are changed. do we need a variable to store docs with scores of 0?
+			article_weight_map[d] = 0;
+
+        	})
 		.on('click', function(d,i) {
 			var current = d;
 			openDoc(d);
