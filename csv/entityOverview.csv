@@ -3,17 +3,17 @@ Alderwood,LOCATION,560,36
 Grandview,LOCATION,155,6
 Washington,LOCATION,130,8
 Yakima,LOCATION,77,2
-Rockford,PERSON,60,1
+Rockford,PERSON,60,8
 Mabton,LOCATION,57,3
 Alderwood High School,ORGANIZATION,56,10
-Prosser,PERSON,46,5
+Prosser,LOCATION,46,9
 Alderwood City Council,ORGANIZATION,44,7
-Bush,PERSON,40,4
-LaFever,PERSON,40,1
+Bush,PERSON,40,12
+LaFever,PERSON,40,6
 Seattle,LOCATION,36,2
 Martinez,PERSON,36,2
 Kerry,PERSON,35,2
-John Panni,PERSON,32,15
+John Panni,PERSON,32,28
 Wells Funeral Home,ORGANIZATION,32,1
 Hastings,PERSON,32,1
 Ellie Olmsen,PERSON,31,21
@@ -29,7 +29,7 @@ Albert Smith,PERSON,27,27
 Texas,LOCATION,26,1
 Yakima County,LOCATION,26,2
 Ore.,LOCATION,24,1
-Mel Sacher,PERSON,23,15
+Mel Sacher,PERSON,23,21
 WASL,ORGANIZATION,23,3
 Yakima Valley,LOCATION,22,2
 Mexico,LOCATION,21,2
@@ -44,7 +44,7 @@ Seeger,PERSON,20,1
 Calif.,LOCATION,19,2
 Selah,PERSON,19,1
 U.S.,LOCATION,19,2
-Rex Luthor,PERSON,19,1
+Rex Luthor,PERSON,19,19
 Rice,PERSON,19,1
 Stotz,PERSON,18,1
 Murray,PERSON,17,2
@@ -57,7 +57,7 @@ Schuette,PERSON,16,1
 Richland,LOCATION,16,3
 Rinz,PERSON,16,1
 Eugene,PERSON,16,1
-John Kerry,PERSON,15,2
+John Kerry,PERSON,15,9
 America,LOCATION,15,3
 Stiles,PERSON,15,1
 Kepcha,PERSON,15,2
@@ -76,7 +76,7 @@ Gonzalez,PERSON,13,1
 University of Washington,ORGANIZATION,13,1
 Luthor,PERSON,13,1
 Zillah,LOCATION,12,2
-Aaron Bones,PERSON,12,1
+Aaron Bones,PERSON,12,11
 Gilleland,PERSON,12,1
 Taylor,PERSON,12,1
 Oregon,LOCATION,12,1
@@ -99,7 +99,7 @@ Deanna,PERSON,11,1
 Norell,PERSON,11,1
 Roberson,PERSON,10,1
 Alderwood Police,ORGANIZATION,10,1
-Tom Rockford,PERSON,10,1
+Tom Rockford,PERSON,10,8
 Iowa,LOCATION,10,1
 California,LOCATION,10,1
 Yakima Valley Highway,LOCATION,10,1
@@ -114,11 +114,11 @@ Gibson,PERSON,10,1
 Alderwood Daily News,ORGANIZATION,9,1
 Bueno,PERSON,9,1
 Alderwood Police Department,ORGANIZATION,9,3
-John Torch,PERSON,9,1
+John Torch,PERSON,9,9
 Senate,ORGANIZATION,9,1
 Pasco,LOCATION,9,1
 Alderwood City,ORGANIZATION,9,1
-Tom Seeger,PERSON,9,1
+Tom Seeger,PERSON,9,8
 Washington State Migrant Council,ORGANIZATION,9,1
 Portland,LOCATION,9,1
 Lynnwood,LOCATION,9,2
@@ -150,14 +150,14 @@ Washington State University,ORGANIZATION,7,1
 Grandview High School,ORGANIZATION,7,3
 Artz,PERSON,7,1
 East Valley,LOCATION,7,1
-Jennie Angel,PERSON,7,1
+Jennie Angel,PERSON,7,5
 Vikings,ORGANIZATION,7,1
 Alderwood Inc.,ORGANIZATION,7,2
 Paige,PERSON,7,1
 U.S. Senate,ORGANIZATION,7,3
 Brazil,LOCATION,7,1
 Bob,PERSON,7,1
-John LaFever,PERSON,7,1
+John LaFever,PERSON,7,7
 Arizona,LOCATION,7,1
 Outlook Elementary School,ORGANIZATION,7,1
 Carol,PERSON,7,1
@@ -181,17 +181,17 @@ United Methodist Church,ORGANIZATION,6,1
 Lamb,PERSON,6,1
 Romeo,PERSON,6,1
 New York,LOCATION,6,1
-Dan Newhouse,PERSON,6,1
+Dan Newhouse,PERSON,6,5
 Locke,PERSON,6,1
-Patty Murray,PERSON,6,1
+Patty Murray,PERSON,6,4
 Mont,PERSON,6,1
 Wolfpack,ORGANIZATION,6,1
-Raul Martinez,PERSON,6,1
-Mari Cornejo,PERSON,6,1
-Kealey Johnston,PERSON,6,1
-Danelle Cowan,PERSON,6,1
-Valentina Solis,PERSON,6,1
-Tonhya Wysong,PERSON,6,1
+Raul Martinez,PERSON,6,6
+Mari Cornejo,PERSON,6,6
+Kealey Johnston,PERSON,6,6
+Danelle Cowan,PERSON,6,6
+Valentina Solis,PERSON,6,6
+Tonhya Wysong,PERSON,6,6
 West Valley,LOCATION,6,1
 Martin,PERSON,6,1
 Bones,PERSON,6,1
@@ -200,9 +200,9 @@ Hall,PERSON,6,1
 Migrant Council,ORGANIZATION,6,1
 Bergeson,PERSON,6,1
 Dave,PERSON,6,1
-Carol Stone,PERSON,6,1
-Kilian,PERSON,6,1
-Alex de la Cruz,PERSON,6,1
+Carol Stone,PERSON,7,7
+Kilian,PERSON,6,4
+Alex de la Cruz,PERSON,6,6
 Richard,PERSON,6,1
 Harold,PERSON,6,1
 Hazel,PERSON,6,1
@@ -230,12 +230,12 @@ Waggoner,PERSON,5,1
 Juliet,PERSON,5,1
 Naches,PERSON,5,1
 Ortiz,PERSON,5,1
-Ted Mana,PERSON,5,1
+Ted Mana,PERSON,6,6
 Alderwood Parks and Recreation Department,ORGANIZATION,5,1
 David,PERSON,5,1
 George W. Bush,PERSON,5,1
 Hillcrest Manor,LOCATION,5,1
-George Nethercutt,PERSON,5,1
+George Nethercutt,PERSON,5,5
 George,PERSON,5,1
 House,ORGANIZATION,5,1
 Alaska,LOCATION,5,1
@@ -244,14 +244,14 @@ Benton City,LOCATION,5,2
 Corliss,PERSON,5,1
 Alderwood Community Center,ORGANIZATION,5,1
 Scott,PERSON,5,1
-Bruce Rinz,PERSON,5,1
-Don Stiles,PERSON,5,1
-Angie Cabrera,PERSON,5,1
+Bruce Rinz,PERSON,5,5
+Don Stiles,PERSON,5,4
+Angie Cabrera,PERSON,5,5
 Klatovsky,PERSON,5,1
 Vegar,PERSON,5,1
-Chante Bottineau,PERSON,5,1
+Chante Bottineau,PERSON,6,6
 Black Rock Creek,LOCATION,5,1
-Terry Bergeson,PERSON,5,1
+Terry Bergeson,PERSON,5,5
 Washington Elementary School,ORGANIZATION,5,1
 Pioneer Elementary School,ORGANIZATION,5,1
 Jamie Smart,PERSON,5,2
@@ -272,7 +272,7 @@ Salem,LOCATION,5,1
 Mary,PERSON,5,1
 Indiana,LOCATION,5,1
 Hans,PERSON,5,1
-Tom Denchel Ford,PERSON,5,1
+Tom Denchel Ford,PERSON,5,3
 Van de Graaf,PERSON,5,1
 Carrera,PERSON,5,1
 Santiago,LOCATION,5,1
@@ -282,22 +282,22 @@ Dallas,LOCATION,5,1
 Cinco de Mayo,ORGANIZATION,5,1
 Chase,PERSON,5,1
 Partida,PERSON,5,1
-Gary Locke,PERSON,5,2
+Gary Locke,PERSON,5,4
 Alderwood Valley,LOCATION,5,2
 Alderwood Planning Commission,ORGANIZATION,5,2
 SBR,ORGANIZATION,5,1
 MRTA,ORGANIZATION,5,1
 Fuji,ORGANIZATION,5,1
-Dino Rossi,PERSON,4,1
+Dino Rossi,PERSON,4,4
 Mabton High School,ORGANIZATION,4,1
 Vela,PERSON,4,1
 Yakima Valley Community College,ORGANIZATION,4,1
-Joe Schwartz,PERSON,4,1
+Joe Schwartz,PERSON,4,3
 Jensen,PERSON,4,1
 Clinton,PERSON,4,1
 God,PERSON,4,1
 Alderwood Chamber of Commerce,ORGANIZATION,4,1
-Bruce Chandler,PERSON,4,1
+Bruce Chandler,PERSON,4,4
 Kent,PERSON,4,1
 Canada,LOCATION,4,1
 Alberta,LOCATION,4,1
@@ -312,18 +312,18 @@ Falcons,ORGANIZATION,4,1
 Sambrano,PERSON,4,1
 DK Bain,ORGANIZATION,4,1
 Wal-Mart,ORGANIZATION,4,1
-Dennis Birr,PERSON,4,1
-Gary Vegar,PERSON,4,1
+Dennis Birr,PERSON,4,4
+Gary Vegar,PERSON,4,4
 Ruben Carrera,PERSON,4,1
 Alderwood Mini Mart,ORGANIZATION,4,1
 Bulldogs,ORGANIZATION,4,1
 Alderwood High,ORGANIZATION,4,1
 Doc Hastings,PERSON,4,1
-Erica Mendez,PERSON,4,1
+Erica Mendez,PERSON,4,3
 Raab,PERSON,4,1
 Thomas Kinkade,PERSON,4,1
 Phinney,PERSON,4,1
-Dave Plesha,PERSON,4,1
+Dave Plesha,PERSON,5,5
 Leavenworth,LOCATION,4,1
 Mendes,PERSON,4,1
 Republican Club,ORGANIZATION,4,1
@@ -337,13 +337,13 @@ Stanwood,LOCATION,4,1
 Washington State,LOCATION,4,1
 Andrea,PERSON,4,1
 Grandview Cemetery,LOCATION,4,1
-George Prado,PERSON,4,1
+George Prado,PERSON,4,4
 Tom,PERSON,4,1
 Uruguay,LOCATION,4,1
 Mo,LOCATION,4,1
 Ray,PERSON,4,1
 Johnson,PERSON,4,1
-Stacey Gorski,PERSON,4,1
+Stacey Gorski,PERSON,4,4
 Melvin,PERSON,4,1
 Alderwood Presbyterian Church,ORGANIZATION,4,1
 Denchel,PERSON,4,1
@@ -360,7 +360,7 @@ Alderwood Valley Highway,ORGANIZATION,4,1
 Mattawa,LOCATION,4,1
 Lake Stevens,LOCATION,4,1
 Benedicto,PERSON,4,1
-Theresa Hancock,PERSON,4,1
+Theresa Hancock,PERSON,4,3
 Planning Commission,ORGANIZATION,4,1
 Drysdale,PERSON,4,1
 Kezele,PERSON,4,1
@@ -369,24 +369,24 @@ Gregorio,PERSON,4,1
 E. coli,PERSON,4,1
 ALDERWOOD,ORGANIZATION,3,1
 Varley,PERSON,3,1
-Steve Evans,PERSON,3,1
+Steve Evans,PERSON,3,3
 Tacoma,LOCATION,3,1
-Christine Gregoire,PERSON,3,1
+Christine Gregoire,PERSON,3,3
 Max,PERSON,3,1
-Ella Mae Lochner,PERSON,3,1
-Alice Benedetti,PERSON,3,1
-Phyllis Morris,PERSON,3,1
+Ella Mae Lochner,PERSON,3,3
+Alice Benedetti,PERSON,3,3
+Phyllis Morris,PERSON,3,3
 Mabton Cemetery,LOCATION,3,1
 Yakima Regional Hospital,ORGANIZATION,3,1
 Weslaco,LOCATION,3,1
 James Vela,PERSON,3,1
 Linda,PERSON,3,1
-George Greenway,PERSON,3,1
+George Greenway,PERSON,4,4
 Angel,PERSON,3,1
 Mark Marro,PERSON,3,1
 Greg Gilleland,PERSON,3,1
 Cantu,PERSON,3,1
-John Hughes,PERSON,3,1
+John Hughes,PERSON,3,3
 Hughes,PERSON,3,1
 Tri-Cities,LOCATION,3,1
 Perkins,PERSON,3,1
@@ -409,13 +409,13 @@ Dayton,LOCATION,3,1
 Hanford,PERSON,3,1
 Bickleton,ORGANIZATION,3,2
 DECA,ORGANIZATION,3,1
-Jim Sarducci,PERSON,3,1
+Jim Sarducci,PERSON,3,3
 Timmermans,PERSON,3,1
 Nelson,PERSON,3,2
 Waller,PERSON,3,1
 Kamiakin Elementary School,ORGANIZATION,3,1
 Cornejo,PERSON,3,1
-Jessica Gonzalez,PERSON,3,1
+Jessica Gonzalez,PERSON,3,3
 Souders,PERSON,3,1
 Snipes Mountain,LOCATION,3,1
 Minnesota,LOCATION,3,1
@@ -456,7 +456,7 @@ Batlle,PERSON,3,1
 Liao,PERSON,3,1
 Dan,PERSON,3,1
 U.S. Navy,ORGANIZATION,3,1
-Amy Kilian,PERSON,3,1
+Amy Kilian,PERSON,3,3
 Gorski,PERSON,3,1
 Isley Gonzalez,PERSON,3,1
 Luis Galvan,PERSON,3,1
@@ -500,7 +500,7 @@ Monroe,PERSON,3,1
 Huerta,PERSON,3,1
 Alderwood County Bar Association,ORGANIZATION,3,1
 U.S. Department of Education,ORGANIZATION,3,1
-Wade Drysdale,PERSON,3,1
+Wade Drysdale,PERSON,3,3
 Stone,PERSON,3,1
 Department of Justice,ORGANIZATION,3,1
 Hileman,PERSON,3,1
@@ -518,7 +518,7 @@ Salmonella,LOCATION,3,1
 Cuba,LOCATION,3,1
 Peru,LOCATION,3,1
 Steve,PERSON,2,1
-Bob Story,PERSON,2,1
+Bob Story,PERSON,6,6
 Myrtis Lang,PERSON,2,1
 John H. Schutz,PERSON,2,1
 Maurice Bowen,PERSON,2,1
@@ -743,7 +743,7 @@ Navarro,PERSON,2,1
 Barry,PERSON,2,1
 Serl,PERSON,2,1
 Ramos,PERSON,2,1
-Laurel Sulfate,ORGANIZATION,2,1
+Laurel Sulfate,PERSON,3,3
 Harris Ford,ORGANIZATION,2,1
 Ed Kleingartner,PERSON,2,1
 Arlene,PERSON,2,1
@@ -1131,6 +1131,7 @@ Justin Clements,PERSON,1,1
 Larry Coleman,PERSON,1,1
 East Valley-Spokane,ORGANIZATION,1,1
 Zamarron,PERSON,1,1
+Jamie Smart,PERSON,23,23
 Noe,PERSON,1,1
 Ryan Harris.Search,PERSON,1,1
 Pateros,PERSON,1,1
@@ -2682,7 +2683,7 @@ Universidad Catolica,ORGANIZATION,1,1
 Marcelo Espina,PERSON,1,1
 Francisco Huaiquipan,PERSON,1,1
 Colo Colo,PERSON,1,1
-Ruben Capria,PERSON,1,1
+Ruben Capria,PERSON,4,4
 Rafael Castellanos,PERSON,1,1
 Ederley Pereira,PERSON,1,1
 Charros FC,ORGANIZATION,1,1
@@ -3060,7 +3061,7 @@ Tim Knight,PERSON,1,1
 Naomi Wagner,PERSON,1,1
 West Hills Memorial Park,LOCATION,1,1
 Alderwood Church,ORGANIZATION,1,1
-Bruce Epps Theresa Hancock,PERSON,1,1
+Bruce Epps Theresa Hancock,PERSON,3,3
 WANDA C. GRANT Wanda C. Grant,PERSON,1,1
 Ekalaka,LOCATION,1,1
 Lonnie,PERSON,1,1
