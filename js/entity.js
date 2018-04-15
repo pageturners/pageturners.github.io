@@ -170,8 +170,10 @@ function update_document_scores() {
 		var article_score = 0;
 		for (cur_entity in file_entity_map[article]) {
 			unformatted_entity = unformat_name(cur_entity);
-			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[unformatted_entity]);
-			entity_sum += file_entity_map[article][cur_entity];
+// 			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[unformatted_entity]);
+// 			entity_sum += file_entity_map[article][cur_entity];
+			article_score += entity_weight_map[unformatted_entity];
+			entity_sum += 1;	
 		}
 
 		if (entity_sum != 0)
