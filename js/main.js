@@ -15,7 +15,7 @@ var location_entities = [];
 var location_entities_unformatted = [];
 var total_entity_appearances = 8214; // hard-coded sum of all entity appearances (for computing entity weights)
 var max_entity_appearances = 560; // hard-coded max of all entity appearances (for computing entity weights)
-var weight_threshold = 20;
+var weight_threshold = 10;
     //50; // anything that appears more than weight_threshold times will have default weight of 1; 8 entities will have max default weight
 var all_articles = [];
 
