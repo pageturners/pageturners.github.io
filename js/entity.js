@@ -124,6 +124,7 @@ function addRowHandlers(table_name) {
     var currentRow = table.rows[i];
     var createClickHandler = function(row) {
       return function() {
+	      console.log('entity clicked');
 	      	//remove past highlighting
 	$('#doc_table tr').css('background','white');
 	
@@ -137,6 +138,7 @@ function addRowHandlers(table_name) {
 //         highlight files which contain that entity
 	for (var article in file_entity_map) {
 		if (entity in file_entity_map[article]) {
+			console.log('entity found in a file!');
 			//highlight which doc is open in table
 			$('#doc_table tr').filter(function(){
   				return $.trim($('td', this).eq(6).text())==article;
