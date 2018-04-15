@@ -24,7 +24,8 @@ function init() {
 	d3.csv('csv/entityOverview.csv', function(data) {
 		for (var i = 0; i < data.length; i++) {
 			var cur_entity = data[i]['entity'];
-			var entity_weight = Math.min(1.0, +data[i]['overall appearances'] / weight_threshold);
+			//var entity_weight = Math.min(1.0, +data[i]['overall appearances'] / weight_threshold);
+			var entity_weight = Math.min(1.0, +data[i]['documents containing'] / weight_threshold);
 			entity_weight_map[unformat_name(cur_entity)] = entity_weight;
 			entity_map[cur_entity] = { 'type': data[i]['type'], 'total_appearances': data[i]['overall appearances'], 'document_appearances': data[i]['documents containing'], 'default_weight': entity_weight };
 			if (data[i]['type'] == 'PERSON') {
