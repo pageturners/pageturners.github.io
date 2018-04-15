@@ -65,10 +65,10 @@ function init() {
 					var article_entities = file_entity_map[data[i]['filename']];
 
 					for (entity_key in article_entities) {
-						article_default_weight += (article_entities[entity_key] * entity_map[entity_key]['default_weight']);
-						entity_sum += article_entities[entity_key];
-// 						article_default_weight += (1*entity_map[entity_key]['default_weight']);
-// 						entity_sum += 1;
+// 						article_default_weight += (article_entities[entity_key] * entity_map[entity_key]['default_weight']);
+// 						entity_sum += article_entities[entity_key];
+						article_default_weight += (1*entity_map[entity_key]['default_weight']);
+						entity_sum += 1;
 					}
 
 					if (entity_sum != 0)
