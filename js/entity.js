@@ -178,6 +178,9 @@ function update_document_scores() {
 
 		if (entity_sum != 0)
 			article_score /= entity_sum;
+		if (article_score > 1) 
+			article_score = 1;
+	
 		article_weight_map[article] = article_score;
 	}
 
