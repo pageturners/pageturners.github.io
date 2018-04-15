@@ -142,17 +142,17 @@ function highlight_entities(current_article) {
 	//highlight current person entities
 	$('#c1_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','greenyellow');
+	}).css('background','silver');
 		
-			//highlight current person entities
+	//highlight current org entities
 	$('#c2_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','greenyellow');
+	}).css('background','silver');
 		
-			//highlight current person entities
+	//highlight current location entities
 	$('#c3_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','greenyellow');
+	}).css('background','silver');
 	}
 }
 
