@@ -68,7 +68,10 @@ function openDoc(filename) {
         }
     });
 	document.getElementById("defaultOpen").click();
-	highlight_entities(current_article);
+	
+	//todo: call click of timeline dot
+	
+	highlight_entities(filename);
 
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
