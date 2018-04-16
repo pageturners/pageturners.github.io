@@ -1,4 +1,5 @@
 var next_article = '1101243424483.txt';
+var view_map = {};
 
 function doc_init() {
     console.log('doc init');
@@ -92,6 +93,7 @@ function openDoc(filename) {
 			var viewCountString = viewCell.innerHTML;
 			var viewCount = parseInt(viewCountString, 10) + 1;
 			viewCell.innerHTML = +viewCount;
+			view_map[filename] = viewCount;
 			
 			if (rows.length > (i+1)) {
 				next_article = table.rows[i+1].getElementsByTagName("td")[6].innerHTML; //todo: change to only go to next article containing certain entities
@@ -112,7 +114,11 @@ function update_doc_table() {
 		var val = article_map[key]
 		var weight = (article_weight_map[key]).toFixed(2);
 		doc_table += '  <td class="doc_td">'+weight+'</td>'; //relevance
-		doc_table += '  <td class="doc_td">0</td>'; //view count
+		if (key in view_map) {
+			doc_table += '  <td class="doc_td">'+view_map[key]+'</td>';
+		} else {
+			doc_table += '  <td class="doc_td">0</td>'; //view count	
+		}
 		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
 		doc_table += '  <td class="doc_td">' + val.date + '</td>'; //date
