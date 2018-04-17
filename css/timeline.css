@@ -27,3 +27,7 @@
     pointer-events: none;
         z-index: 5;
 }
+
+.tick {
+  font-size: 12px;
+}
