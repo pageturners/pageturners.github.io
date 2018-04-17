@@ -14,3 +14,16 @@
   margin-left: 60px;
   margin-right: 60px;
 }
+
+.tooltip {
+  position: absolute;
+    text-align: left;
+    width: 150px;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: #72ddd4;
+    border: 0px;
+    border-radius: 4px;
+    pointer-events: none;
+        z-index: 5;
+}
