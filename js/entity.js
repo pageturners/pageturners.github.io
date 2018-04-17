@@ -6,15 +6,15 @@ function entity_init() {
 
 	// create a table for the first entity type
 	var c1_div = document.getElementById('entities_c1');
-	var c1_table_header = '<table id="c1_table_header" class="entity_header">'; 
+	var c1_table_header = '<table id="c1_table_header" class="entity_header">';
 	c1_table_header += '  <tr><th colspan="3">' + entity_types[0] + '</th></tr>';
 	c1_table_header += '</table>';
 	var c1_table = '<table id="c1_table" class="entity_table">';
 	for (var i = 0; i < person_entities.length; i++) {
 		c1_table += '<tr>';
-		c1_table += '  <td class="checkbox_td"><input id="' + unformat_name(person_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
+		c1_table += '  <td class="checkbox_td"><input id="' + unformat_name(person_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>';
 		c1_table += '  <td class="entity_td">' + person_entities[i] + '</td>';
-		c1_table += '  <td class="slider_td"><input id="' + unformat_name(person_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[person_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>'; 
+		c1_table += '  <td class="slider_td"><input id="' + unformat_name(person_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[person_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>';
 		c1_table += '</tr>';
 	}
 	c1_table += '</table>';
@@ -44,7 +44,7 @@ function entity_init() {
 	var c3_table = '<table id="c3_table" class="entity_table">';
 	for (var i = 0; i < location_entities.length; i++) {
 		c3_table += '<tr>';
-		c3_table += '  <td class="checkbox_td"><input id="' + unformat_name(location_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
+		c3_table += '  <td class="checkbox_td"><input id="' + unformat_name(location_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>';
 		c3_table += '  <td class="entity_td">' + location_entities[i] + '</td>';
 		c3_table += '  <td class="slider_td"><input id="' + unformat_name(location_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[location_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>';
 		c3_table += '</tr>';
@@ -59,7 +59,7 @@ function entity_init() {
 	sort_all_entity_tables();
 }
 
-/* 
+/*
  * Remove punctuation from names for the purpose of div IDs
  */
 function unformat_name(name) {
@@ -82,7 +82,7 @@ function add_event_listeners() {
 	        // don't need to change anything just yet...
 	    } else {
 	        // set weight to 0 and re-sort the table
-	        entity_weight_map[checkboxId] = 0; 
+	        entity_weight_map[checkboxId] = 0;
 	        document.getElementById(checkboxId + '_weight').value = "0";
 	        if (person_entities_unformatted.indexOf(checkboxId) > -1)
 		    	sort_entity_table('c1_table');
@@ -130,15 +130,15 @@ function addRowHandler(table_name) {
 			return function() {
 				// remove past highlighting
 				$('#doc_table tr').css('background','white');
-	
+
 				//reapply current article highlight
 				$('#doc_table tr').filter(function() {
 					return $.trim($('td', this).eq(6).text())==current_article;
 				}).css('background','aquamarine');
-	      
+
 				var cell = row.getElementsByTagName("td")[1];
 				var entity = cell.innerHTML;
-				
+
 				// highlight files which contain that entity
 				for (var article in file_entity_map) {
 					if (entity in file_entity_map[article]) {
@@ -146,7 +146,7 @@ function addRowHandler(table_name) {
 						$('#doc_table tr').filter(function(){
 							return $.trim($('td', this).eq(6).text())==article;
 						}).css('background','silver');
-					}		
+					}
 				}
 			};
 		};
@@ -186,7 +186,7 @@ function sort_entity_table(which_table) {
 				break;
 			}
 		}
-	    
+
 	    if (should_switch) {
 			rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
 			switching = true;
@@ -195,7 +195,7 @@ function sort_entity_table(which_table) {
 }
 
 /*
- * Sort all of the entity tables 
+ * Sort all of the entity tables
  */
 function sort_all_entity_tables() {
 	sort_entity_table('c1_table');
@@ -208,14 +208,14 @@ function sort_all_entity_tables() {
  */
 function update_document_scores() {
 	for (article in file_entity_map) {
-		var entity_sum = 0; 
+		var entity_sum = 0;
 		var article_score = 0;
 		for (cur_entity in file_entity_map[article]) {
 			unformatted_entity = unformat_name(cur_entity);
 // 			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[unformatted_entity]);
 // 			entity_sum += file_entity_map[article][cur_entity];
 			article_score += entity_weight_map[unformatted_entity];
-			entity_sum += 1;	
+			entity_sum += 1;
 		}
 
 		if (entity_sum != 0)
@@ -223,7 +223,7 @@ function update_document_scores() {
 
 		if (article_score > 1)
 			article_score = 1;
-	
+
 		article_weight_map[article] = article_score;
 	}
 

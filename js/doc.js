@@ -3,12 +3,12 @@ var view_map = {};
 
 function doc_init() {
     console.log('doc init');
-	
+
     openDoc('1101243424483.txt'); //change to most relevant doc
 
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
-	var doc_header = '<table id="doc_header" class="doc_header">'; 
+	var doc_header = '<table id="doc_header" class="doc_header">';
 	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
@@ -28,7 +28,7 @@ function doc_init() {
 
 	doc_table += '</table>';
 	doc_div.innerHTML = doc_header + doc_table;
-	
+
 	sortTable();
 	addRowHandlers();
 }
@@ -40,11 +40,11 @@ function openDoc(filename) {
             document.getElementById("document_view").innerHTML = "Failed to load document";
             throw error;
         } else {
-	    
+
 			text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-			
+
 			current_article = filename;
-			
+
 		for (var i = 0; i < organization_entities.length; i++) {
 			if (organization_entities[i].length > 2 && !organization_entities[i].endsWith(".")) {
 				var re = new RegExp(organization_entities[i],"g");
@@ -65,24 +65,24 @@ function openDoc(filename) {
 				text = text.replace(re, "<span class='highlightperson'>"+person_entities[i]+"</span>");
 			}
 		}
-        document.getElementById("document_view").innerHTML = text;          
+        document.getElementById("document_view").innerHTML = text;
         }
     });
 	document.getElementById("defaultOpen").click();
-	
+
 	//todo: call click of timeline dot
-	
+
 	highlight_entities(filename);
 
 	//remove past highlighting
 	$('#doc_table tr').css('background','white');
-	
+
 	//highlight which doc is open in table
 	$('#doc_table tr').filter(function(){
   		return $.trim($('td', this).eq(6).text())==filename;
 	}).css('background','aquamarine');
-		
- 	//incriment view count	
+
+ 	//incriment view count
 	var table = document.getElementById("doc_table");
 	var rows = table.getElementsByTagName("tr");
 	for (i = 0; i < rows.length; i++) {
@@ -94,18 +94,18 @@ function openDoc(filename) {
 			var viewCount = parseInt(viewCountString, 10) + 1;
 			viewCell.innerHTML = +viewCount;
 			view_map[filename] = viewCount;
-			
+
 			if (rows.length > (i+1)) {
 				next_article = table.rows[i+1].getElementsByTagName("td")[6].innerHTML; //todo: change to only go to next article containing certain entities
 			}
-		}   		
-  	}	
+		}
+  	}
 }
 
 function update_doc_table() {
 	// create a table for the the document information
 	var doc_div = document.getElementById('documents');
-	var doc_header = '<table id="doc_header" class="doc_header">'; 
+	var doc_header = '<table id="doc_header" class="doc_header">';
 	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
@@ -117,7 +117,7 @@ function update_doc_table() {
 		if (key in view_map) {
 			doc_table += '  <td class="doc_td">'+view_map[key]+'</td>';
 		} else {
-			doc_table += '  <td class="doc_td">0</td>'; //view count	
+			doc_table += '  <td class="doc_td">0</td>'; //view count
 		}
 		doc_table += '  <td class="doc_td">' + val.title + '</td>'; //title
 		doc_table += '  <td class="doc_td">' + val.author + '</td>'; //author
@@ -129,36 +129,36 @@ function update_doc_table() {
 
 	doc_table += '</table>';
 	doc_div.innerHTML = doc_header + doc_table;
-	
+
 	sortTable();
 	addRowHandlers();
 }
 
 function next_doc() {
-	openDoc(next_article);	
+	openDoc(next_article);
 }
 
 function highlight_entities(current_article) {
 	$('#c1_table tr').css('background','white');
 	$('#c2_table tr').css('background','white');
 	$('#c3_table tr').css('background','white');
-	
+
 	for (var cur_entity in file_entity_map[current_article]) {
-		
+
 	//highlight current person entities
 	$('#c1_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','silver');
-		
+	}).css('background','#e7e7e7');
+
 	//highlight current org entities
 	$('#c2_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','silver');
-		
+	}).css('background','#e7e7e7');
+
 	//highlight current location entities
 	$('#c3_table tr').filter(function(){
   		return $.trim($('td', this).eq(1).text())==cur_entity;
-	}).css('background','silver');
+	}).css('background','#e7e7e7');
 	}
 }
 
@@ -239,4 +239,3 @@ function switchTabs(evt, tabName) {
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
-
