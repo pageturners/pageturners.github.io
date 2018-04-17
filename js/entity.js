@@ -14,7 +14,7 @@ function entity_init() {
 		c1_table += '<tr>';
 		c1_table += '  <td class="checkbox_td"><input id="' + unformat_name(person_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
 		c1_table += '  <td class="entity_td">' + person_entities[i] + '</td>';
-		c1_table += '  <td class="slider_td"><input id="' + unformat_name(person_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[person_entities[i]]['default_weight'] * 100) + '" class="slider"></td>'; 
+		c1_table += '  <td class="slider_td"><input id="' + unformat_name(person_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[person_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>'; 
 		c1_table += '</tr>';
 	}
 	c1_table += '</table>';
@@ -30,7 +30,7 @@ function entity_init() {
 		c2_table += '<tr>';
 		c2_table += '  <td class="checkbox_td"><input id="' + unformat_name(organization_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>';
 		c2_table += '  <td class="entity_td">' + organization_entities[i] + '</td>';
-		c2_table += '  <td class="slider_td"><input id="' + unformat_name(organization_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[organization_entities[i]]['default_weight'] * 100) + '" class="slider"></td>';
+		c2_table += '  <td class="slider_td"><input id="' + unformat_name(organization_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[organization_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>';
 		c2_table += '</tr>';
 	}
 	c2_table += '</table>';
@@ -46,7 +46,7 @@ function entity_init() {
 		c3_table += '<tr>';
 		c3_table += '  <td class="checkbox_td"><input id="' + unformat_name(location_entities[i]) + '_checkBox" type="checkbox" name="checkbox" class="entity_checkbox" checked/></td>'; 
 		c3_table += '  <td class="entity_td">' + location_entities[i] + '</td>';
-		c3_table += '  <td class="slider_td"><input id="' + unformat_name(location_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[location_entities[i]]['default_weight'] * 100) + '" class="slider"></td>';
+		c3_table += '  <td class="slider_td"><input id="' + unformat_name(location_entities[i]) + '_weight" type="range" min="0" max="100" value="' + (entity_map[location_entities[i]]['default_weight'] * 100.0) + '" class="slider"></td>';
 		c3_table += '</tr>';
 	}
 	c3_table += '</table>';
@@ -102,8 +102,9 @@ function add_event_listeners() {
 		// Update the current slider value (each time you drag the slider handle)
 		slider.onmouseup = function() {
 			var slider_id = this.id;
+			slider = document.getElementById(slider_id); // make sure we have the correct slider selected before grabbing its value
 			slider_id = slider_id.substring(0, slider_id.length - 7);
-			entity_weight_map[slider_id] = slider.value / 100;
+			entity_weight_map[slider_id] = slider.value / 100.0;
 		    if (person_entities_unformatted.indexOf(slider_id) > -1)
 		    	sort_entity_table('c1_table');
 		    else if (organization_entities_unformatted.indexOf(slider_id) > -1)
