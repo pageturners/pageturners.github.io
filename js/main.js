@@ -16,7 +16,7 @@ var location_entities_unformatted = [];
 var total_entity_appearances = 8214; // hard-coded sum of all entity appearances (for computing entity weights)
 var max_entity_appearances = 560; // hard-coded max of all entity appearances (for computing entity weights)
 var weight_threshold = 10;
-    //50; // anything that appears more than weight_threshold times will have default weight of 1; 8 entities will have max default weight
+    //50; // anything that appears more than weight_threshold times will have default weight of 1
 var all_articles = [];
 
 function init() {
@@ -67,7 +67,7 @@ function init() {
 					for (entity_key in article_entities) {
 // 						article_default_weight += (article_entities[entity_key] * entity_map[entity_key]['default_weight']);
 // 						entity_sum += article_entities[entity_key];
-						article_default_weight += (1*entity_map[entity_key]['default_weight']);
+						article_default_weight += entity_map[entity_key]['default_weight'];
 						entity_sum += 1;
 					}
 
@@ -86,7 +86,7 @@ function init() {
 
 	// wait a couple seconds to make sure all the data finishes loading
 	window.setTimeout(function() {
-		console.log('entity_map', entity_map);
+		/*console.log('entity_map', entity_map);
 		console.log('file_entity_map', file_entity_map);
 		console.log('article_map', article_map);
 		console.log('person_entities', person_entities);
@@ -96,7 +96,7 @@ function init() {
 		console.log('location_entities', location_entities);
 		console.log('location_entities_unformatted', location_entities_unformatted);
 		console.log('entity_weight_map', entity_weight_map);
-		console.log('article_weight_map', article_weight_map);
+		console.log('article_weight_map', article_weight_map);*/
 
 		entity_init();
 		timeline_init();

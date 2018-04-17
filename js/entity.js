@@ -103,7 +103,7 @@ function add_event_listeners() {
 		slider.onmouseup = function() {
 			var slider_id = this.id;
 			slider_id = slider_id.substring(0, slider_id.length - 7);
-			entity_weight_map[slider_id] = slider.value; // todo: does slider.value work?
+			entity_weight_map[slider_id] = slider.value / 100;
 		    if (person_entities_unformatted.indexOf(slider_id) > -1)
 		    	sort_entity_table('c1_table');
 		    else if (organization_entities_unformatted.indexOf(slider_id) > -1)
@@ -116,40 +116,41 @@ function add_event_listeners() {
 	}
 }
 
-//open document when table row is clicked
+/*
+ * open document when table row is clicked
+ */
 function addRowHandler(table_name) {
 	console.log('row handler added for: '+table_name);
-  var table = document.getElementById(table_name);
-  var rows = table.getElementsByTagName("tr");
-  for (i = 0; i < rows.length; i++) {
-    var currentRow = table.rows[i];
-    var createClickHandler = function(row) {
-      return function() {
-// 	      console.log('entity clicked');
-	      	//remove past highlighting
-	$('#doc_table tr').css('background','white');
+	var table = document.getElementById(table_name);
+	var rows = table.getElementsByTagName("tr");
+	for (i = 0; i < rows.length; i++) {
+		var currentRow = table.rows[i];
+		var createClickHandler = function(row) {
+			return function() {
+				// remove past highlighting
+				$('#doc_table tr').css('background','white');
 	
-	//reapply current article highlight
-	$('#doc_table tr').filter(function(){
-  		return $.trim($('td', this).eq(6).text())==current_article;
-	}).css('background','aquamarine');
+				//reapply current article highlight
+				$('#doc_table tr').filter(function() {
+					return $.trim($('td', this).eq(6).text())==current_article;
+				}).css('background','aquamarine');
 	      
-        var cell = row.getElementsByTagName("td")[1];
-        var entity = cell.innerHTML;
-//         highlight files which contain that entity
-	for (var article in file_entity_map) {
-		if (entity in file_entity_map[article]) {
-// 			console.log('entity found in a file!');
-			//highlight which doc is open in table
-			$('#doc_table tr').filter(function(){
-  				return $.trim($('td', this).eq(6).text())==article;
-			}).css('background','silver');
-		}		
+				var cell = row.getElementsByTagName("td")[1];
+				var entity = cell.innerHTML;
+				
+				// highlight files which contain that entity
+				for (var article in file_entity_map) {
+					if (entity in file_entity_map[article]) {
+						// highlight which doc is open in table
+						$('#doc_table tr').filter(function(){
+							return $.trim($('td', this).eq(6).text())==article;
+						}).css('background','silver');
+					}		
+				}
+			};
+		};
+		currentRow.onclick = createClickHandler(currentRow);
 	}
-      };
-    };
-    currentRow.onclick = createClickHandler(currentRow);
-  }
 }
 
 
@@ -212,13 +213,14 @@ function update_document_scores() {
 			unformatted_entity = unformat_name(cur_entity);
 // 			article_score += (file_entity_map[article][cur_entity] * entity_weight_map[unformatted_entity]);
 // 			entity_sum += file_entity_map[article][cur_entity];
-			article_score += (1*entity_weight_map[unformatted_entity]);
+			article_score += entity_weight_map[unformatted_entity];
 			entity_sum += 1;	
 		}
 
 		if (entity_sum != 0)
 			article_score /= entity_sum;
-		if (article_score > 1) 
+
+		if (article_score > 1)
 			article_score = 1;
 	
 		article_weight_map[article] = article_score;
