@@ -46,10 +46,16 @@ td, th {
 
 .entity_td {
 	width: 40%;
+	margin: 5px 0;
 }
 
 .slider_td {
 	width: 55%;
+}
+
+input[type=range] {
+    margin: 5px 0 !important;
+		border: none !important;
 }
 
 .entity_checkbox {
