@@ -102,6 +102,21 @@ function timeline_init() {
 			return "#808080";
 		}
 	})
+	.on("mouseover", function(d) {
+		// var current = d;
+		tooltip.transition()
+		.duration(200)
+		.style("opacity", .9);
+		// tooltip.html(formatTime(d.date) + "<br/>"  + d.close)
+		tooltip.html("<b>" + article_map[d]['title'] + "</b>" + "<br/>"  + article_map[d]['date'])
+		.style("left", (d3.event.pageX + 15) + "px")
+		.style("top", (d3.event.pageY - 28) + "px");
+	})
+	.on("mouseout", function(d) {
+		tooltip.transition()
+		.duration(500)
+		.style("opacity", 0);
+	})
 	.on('dbclick', function(d,i) {
 		//remove datapoint
 		d3.select(this).remove();
@@ -119,21 +134,6 @@ function timeline_init() {
 			} else {
 				return 3.5;
 			}
-		})
-		.on("mouseover", function(d) {
-			// var current = d;
-			tooltip.transition()
-			.duration(200)
-			.style("opacity", .9);
-			// tooltip.html(formatTime(d.date) + "<br/>"  + d.close)
-			tooltip.html("<b>" + article_map[d]['title'] + "</b>" + "<br/>"  + article_map[d]['date'])
-			.style("left", (d3.event.pageX + 15) + "px")
-			.style("top", (d3.event.pageY - 28) + "px");
-		})
-		.on("mouseout", function(d) {
-			tooltip.transition()
-			.duration(500)
-			.style("opacity", 0);
 		});
 
 	});
