@@ -43,5 +43,6 @@
 .legend-item {
 
   display: inline-block;
+    /* width: 15%; */
     padding-right: 20px;
 }
