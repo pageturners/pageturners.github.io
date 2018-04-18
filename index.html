@@ -16,9 +16,16 @@
   <link rel="stylesheet" type="text/css" href="css/timeline.css">
   <link rel="stylesheet" type="text/css" href="css/entity.css">
   <link rel="stylesheet" type="text/css" href="css/doc.css">
+  <link rel="stylesheet" href="css/loader.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body onload="init()">
+
+  <!-- data loading spinner -->
+  <div class="loaderbox" id="loaderbox">
+    <div class="loader"></div>
+    <div class="center" id="loader_text">Loading Data...</div>
+  </div>
 
   <!-- general header -->
   <div class="header">

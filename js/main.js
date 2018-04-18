@@ -5,7 +5,7 @@ var article_weight_map = {}; // (file name, article weight)
 var entity_weight_map = {}; // (entity name, entity weight)
 
 var entity_types = ['PERSON', 'ORGANIZATION', 'LOCATION'];
-var current_article = '1101243424483.txt'; //filename of article currently being read; default set to earliest article abouve 0.4? 
+var current_article = '1101243424483.txt'; //filename of article currently being read; default set to earliest article abouve 0.4?
 var all_entities = [];
 var person_entities = [];
 var person_entities_unformatted = [];
@@ -20,6 +20,8 @@ var weight_threshold = 10;
 var all_articles = [];
 
 function init() {
+
+	document.getElementById('loader_text').textContent = 'Initializing ...';
 
 	// load entity overview
 	d3.csv('csv/entityOverview.csv', function(data) {
@@ -76,7 +78,7 @@ function init() {
 
 					article_weight_map[data[i]['filename']] = article_default_weight;
 					var article_date = data[i]['date'];
-					if (article_date == 'none') 
+					if (article_date == 'none')
 						article_date = "1/1/2004"; // setting default date as a temporary measure until we come up with a better solution
 					article_map[data[i]['filename']] = { 'type': data[i]['type'], 'date': article_date, 'title': data[i]['title'], 'author': data[i]['author'] }
 				}

@@ -138,6 +138,9 @@ function timeline_init() {
 
 	});
 
+	var lb = document.getElementById('loaderbox');
+        lb.parentNode.removeChild(lb);
+
 }
 
 // todo: update stuff in the timeline (called after document scores change)
