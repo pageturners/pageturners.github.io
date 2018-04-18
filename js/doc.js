@@ -9,7 +9,7 @@ function doc_init() {
     // create a table for the the document information
 	var doc_div = document.getElementById('documents');
 	var doc_header = '<table id="doc_header" class="doc_header">';
-	doc_header += '  <tr><th>Score</th><th>Views</th><th>Title</th><th>Author</th><th>Date</th><th>Type</th><th>Filename</th></tr>';
+	doc_header += '  <tr><th style="width: 10px;">Rel</th><th style="    width:  10px;">View</th><th style="    width: 228px;">Title</th><th style="    width: 60px;">Author</th><th style="width: 70px;">Date</th><th style="    width: 55px">Type</th><th>Filename</th></tr>';
 	doc_header += '</table>';
 	var doc_table = '<table id="doc_table" class="doc_table">';
 	for (var key in article_map) {
