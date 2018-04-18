@@ -31,3 +31,18 @@
 .tick {
   font-size: 12px;
 }
+
+#legend {
+  width: 50%;
+    display: inline-block;
+    float: right;
+
+    padding-top: 10px;
+}
+
+.legend-item {
+
+  display: inline-block;
+    width: 15%;
+    padding-right: 20px;
+}

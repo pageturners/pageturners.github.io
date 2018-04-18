@@ -61,7 +61,7 @@
 
       <!-- Doc View -->
       <div class="card doc-card">
-<!--         <div class="card-name">Documents</div> -->
+        <!--         <div class="card-name">Documents</div> -->
         <!-- Tab links -->
         <div class="tab">
           <button class="tablinks" id="defaultOpen" onclick="switchTabs(event, 'Document Reader')">Document Reader</button>
@@ -88,6 +88,50 @@
       <!-- Timeline View -->
       <div class="card timeline-card">
         <div class="card-name">Timeline</div>
+
+        <div id="legend">
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #6A1B9A; stroke: #6A1B9A"></circle>
+            </svg>
+            Editorial
+          </div>
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #4B0082; stroke: #4B0082"></circle>
+            </svg>
+            
+            Obituary
+          </div>
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #000000; stroke: #000000"></circle>
+            </svg>
+
+            Article
+          </div>
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #008B8B; stroke: #008B8B"></circle>
+            </svg>
+
+            Fact Sheet
+          </div>
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #778899; stroke: #778899"></circle>
+            </svg>
+
+            Numbers
+          </div>
+          <div class="legend-item">
+            <svg height="10" width="10" style="display: inline-block;">
+              <circle class="dot" r="3.5" cx="5" cy="5" style="fill: #808080; stroke: #808080"></circle>
+            </svg>
+            Other
+          </div>
+
+        </div>
 
         <div id="timeline"></div>
 
